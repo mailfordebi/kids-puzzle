@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kids Puzzle</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>🧩 Drag & Drop Puzzle</h1>
+  <div class="puzzle-container">
+    <div class="pieces">
+      <img src="piece1.png" draggable="true" id="p1" />
+      <img src="piece2.png" draggable="true" id="p2" />
+      <img src="piece3.png" draggable="true" id="p3" />
+      <img src="piece4.png" draggable="true" id="p4" />
+    </div>
+    <div class="board">
+      <div class="drop-zone" data-piece="p1"></div>
+      <div class="drop-zone" data-piece="p2"></div>
+      <div class="drop-zone" data-piece="p3"></div>
+      <div class="drop-zone" data-piece="p4"></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
