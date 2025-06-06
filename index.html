@@ -1,27 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kids Puzzle</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids Fun Puzzles</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>🧩 Drag & Drop Puzzle</h1>
-  <div class="puzzle-container">
-    <div class="pieces">
-      <img src="piece1.png" draggable="true" id="p1" />
-      <img src="piece2.png" draggable="true" id="p2" />
-      <img src="piece3.png" draggable="true" id="p3" />
-      <img src="piece4.png" draggable="true" id="p4" />
-    </div>
-    <div class="board">
-      <div class="drop-zone" data-piece="p1"></div>
-      <div class="drop-zone" data-piece="p2"></div>
-      <div class="drop-zone" data-piece="p3"></div>
-      <div class="drop-zone" data-piece="p4"></div>
-    </div>
-  </div>
-  <script src="script.js"></script>
+    <header>
+        <h1>🎮 Kids Fun Puzzles 🧩</h1>
+        <nav>
+            <button class="nav-btn active" data-puzzle="secret-code">Secret Code</button>
+            <button class="nav-btn" data-puzzle="coming-soon">More Coming Soon!</button>
+        </nav>
+    </header>
+
+    <main>
+        <div id="secret-code-puzzle" class="puzzle-container active">
+            <h2>Secret Code Puzzle</h2>
+            <div class="puzzle-description">
+                <p>Can you crack the secret message? Each symbol represents a letter!</p>
+                <p>Fill in the boxes with the correct letters.</p>
+            </div>
+            <div class="symbols-guide">
+                <div class="symbol">🌟 = ?</div>
+                <div class="symbol">🎨 = ?</div>
+                <div class="symbol">🎵 = ?</div>
+                <div class="symbol">🌈 = ?</div>
+            </div>
+            <div class="puzzle-content">
+                <div class="secret-message">
+                    <span>🌟</span>
+                    <span>🎨</span>
+                    <span>🎵</span>
+                    <span>🌈</span>
+                </div>
+                <div class="answer-inputs">
+                    <input type="text" maxlength="1" class="letter-input" data-position="0">
+                    <input type="text" maxlength="1" class="letter-input" data-position="1">
+                    <input type="text" maxlength="1" class="letter-input" data-position="2">
+                    <input type="text" maxlength="1" class="letter-input" data-position="3">
+                </div>
+                <button id="check-answer" class="check-btn">Check Answer!</button>
+                <div id="result-message" class="result"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
