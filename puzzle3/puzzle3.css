@@ -1,0 +1,266 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e1f4ff 100%);
+    height: 100vh;
+    padding: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    color: #333;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2em;
+    color: #2196f3;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.nav-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #2196f3;
+    border-radius: 20px;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-btn:hover {
+    background: #1976d2;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+main {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
+.puzzle-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: visible;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.6em;
+    margin-bottom: 12px;
+    color: #2196f3;
+}
+
+.puzzle-description {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 1em;
+    line-height: 1.4;
+    color: #666;
+}
+
+.number-box.pattern {
+    background: #e3f2fd;
+    border-color: #4caf50;
+    cursor: default;
+}
+
+.number-box.pattern:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.number-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 15px 0;
+    padding: 15px;
+    background: #f8f8f8;
+    border-radius: 12px;
+}
+
+.number-row {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding: 16px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.input-numbers {
+    width: 240px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+    background: #f5f9ff;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.random-numbers {
+    flex: 1;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    background: #f0f7ff;
+    padding: 10px;
+    border-radius: 6px;
+    margin-right: 15px;
+}
+
+.number-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.number-box {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 2px solid #2196f3;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    flex-shrink: 0;
+}
+
+.number-box.pattern {
+    background: #e3f2fd;
+    border-color: #4caf50;
+    cursor: default;
+}
+
+.number-box:hover:not(.pattern) {
+    transform: scale(1.1);
+    box-shadow: 0 2px 4px rgba(33, 150, 243, 0.2);
+}
+
+.number-box.selected {
+    background: #2196f3;
+    color: #fff;
+}
+
+.number-box.correct {
+    background: #4caf50;
+    border-color: #4caf50;
+    color: #fff;
+}
+
+.number-box.incorrect {
+    background: #f44336;
+    border-color: #f44336;
+    color: #fff;
+}
+
+.check-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 24px;
+    font-size: 18px;
+    background: #2196f3;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(33, 150, 243, 0.3);
+}
+
+.check-btn:hover {
+    background: #1976d2;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(33, 150, 243, 0.4);
+}
+
+.result {
+    text-align: center;
+    margin: 15px 0;
+    font-size: 20px;
+    min-height: 30px;
+    transition: all 0.3s;
+}
+
+.result.success {
+    color: #4caf50;
+}
+
+.result.error {
+    color: #f44336;
+}
+
+/* Celebration Animations */
+@keyframes celebrate {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.puzzle-container.celebrate {
+    animation: celebrate 0.5s ease-in-out;
+}
+
+.celebration {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.celebration.flower {
+    font-size: 30px;
+    animation: float 2s infinite;
+}
+
+.celebration.ribbon {
+    font-size: 25px;
+    animation: spin 3s infinite linear;
+}
