@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Sequence Quest</title>
+    <link rel="stylesheet" href="./puzzle3.css">
+</head>
+<body>
+    <header>
+        <h1>🔢 Math Sequence Quest 🎲</h1>
+        <nav>
+            <a href="../index.html" class="nav-btn">Home</a>
+            <a href="../puzzle2/puzzle1.html" class="nav-btn">Previous: Fun Riddles</a>
+            <a href="../puzzle4/puzzle4.html" class="nav-btn">Next: Pattern Addition</a>
+        </nav>
+    </header>
+
+    <main>
+        <div id="number-puzzle" class="puzzle-container active">
+            <h2>Find the Hidden Sequence!</h2>
+            <div class="puzzle-description">
+                <p>Look at the 5 numbers shown on the right side of each row.</p>
+                <p>Find these numbers in the left side and click them in order!</p>
+                <p>🎯 Hint: The numbers will be next to each other in the row.</p>
+            </div>
+
+            <div class="number-rows">
+                <!-- Will be filled by JavaScript with rows of numbers -->
+            </div>
+
+            <button id="check-answer" class="check-btn">Check Results</button>
+            <div id="result-message" class="result"></div>
+        </div>
+    </main>
+
+    <script src="../sounds/soundGenerator.js"></script>
+    <script src="../sounds.js"></script>
+    <script src="../feedback.js" defer></script>
+    <script src="./puzzle3.js" defer></script>
+</body>
+</html>

@@ -4,50 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kids Fun Puzzles</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <header>
-        <h1>🎮 Kids Fun Puzzles 🧩</h1>
-        <nav>
-            <button class="nav-btn active" data-puzzle="secret-code">Secret Code</button>
-            <button class="nav-btn" data-puzzle="coming-soon">More Coming Soon!</button>
-        </nav>
-    </header>
+    <div class="container">
+        <header>
+            <h1>🎮 Kids Fun Puzzles 🧩</h1>
+            <p class="subtitle">Choose your puzzle adventure!</p>
+        </header>
 
-    <main>
-        <div id="secret-code-puzzle" class="puzzle-container active">
-            <h2>Secret Code Puzzle</h2>
-            <div class="puzzle-description">
-                <p>Can you crack the secret message? Each symbol represents a letter!</p>
-                <p>Fill in the boxes with the correct letters.</p>
-            </div>
-            <div class="symbols-guide">
-                <div class="symbol">🌟 = ?</div>
-                <div class="symbol">🎨 = ?</div>
-                <div class="symbol">🎵 = ?</div>
-                <div class="symbol">🌈 = ?</div>
-            </div>
-            <div class="puzzle-content">
-                <div class="secret-message">
-                    <span>🌟</span>
-                    <span>🎨</span>
-                    <span>🎵</span>
-                    <span>🌈</span>
-                    
-                </div>
-                <div class="answer-inputs">
-                    <input type="text" maxlength="1" class="letter-input" data-position="0">
-                    <input type="text" maxlength="1" class="letter-input" data-position="1">
-                    <input type="text" maxlength="1" class="letter-input" data-position="2">
-                    <input type="text" maxlength="1" class="letter-input" data-position="3">
-                </div>
-                <button id="check-answer" class="check-btn">Check Answer!</button>
-                <div id="result-message" class="result"></div>
-            </div>
-        </div>
-    </main>
+        <main class="puzzle-grid">
+            <a href="puzzle1/puzzle.html" class="puzzle-card">
+                <div class="puzzle-icon">🔠</div>
+                <h2>Secret Code</h2>
+                <p>Decode secret messages using symbols!</p>
+            </a>
 
-    <script src="script.js"></script>
+            <a href="puzzle2/puzzle1.html" class="puzzle-card">
+                <div class="puzzle-icon">😊</div>
+                <h2>Fun Riddles</h2>
+                <p>Match emojis with letters!</p>
+            </a>
+
+            <a href="puzzle3/puzzle3.html" class="puzzle-card">
+                <div class="puzzle-icon">🔢</div>
+                <h2>Math Sequence</h2>
+                <p>Find the hidden number sequences!</p>
+            </a>
+
+            <div class="puzzle-card coming-soon">
+                <div class="puzzle-icon">🎯</div>
+                <h2>Word Hunt</h2>
+                <p>Coming Soon!</p>
+            </div>
+        </main>
+    </div>
+    <script src="sounds/soundGenerator.js"></script>
+    <script src="sounds.js"></script>
+    <script src="feedback.js" defer></script>
+    <script src="index.js" defer></script>
 </body>
 </html>

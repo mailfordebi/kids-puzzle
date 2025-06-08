@@ -42,6 +42,8 @@ nav {
     color: white;
     cursor: pointer;
     transition: transform 0.2s, background 0.2s;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .nav-btn:hover {
@@ -49,8 +51,9 @@ nav {
     background: #45b7ae;
 }
 
-.nav-btn.active {
-    background: #ff6b6b;
+.nav-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .puzzle-container {
@@ -78,7 +81,7 @@ h2 {
 
 .puzzle-description {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
     color: #666;
     font-size: 1.1rem;
 }
@@ -87,13 +90,13 @@ h2 {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
     gap: 0.5rem;
-    margin: 0.5rem auto;
+    margin: 1rem auto;
     max-width: 800px;
     padding: 0.5rem;
     background: #f8f9fa;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    max-height: 255px;
+    max-height: 265px;
     overflow-y: auto;
 }
 
@@ -117,19 +120,14 @@ h2 {
     background: #fff5f5;
 }
 
-.symbol-letter {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #ff6b6b;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
+.symbol-emoji {
+    font-size: 1.5rem;
 }
 
-.symbol-code {
-    font-family: monospace;
-    font-size: 1.1rem;
-    color: #4ecdc4;
+.symbol-letter {
+    font-size: 1.2rem;
     font-weight: bold;
-    letter-spacing: 1px;
+    color: #ff6b6b;
 }
 
 .secret-message {
@@ -139,7 +137,7 @@ h2 {
     margin: 1rem 0;
     background: #f8f9fa;
     padding: 0.5rem;
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
 .secret-message span {
@@ -173,9 +171,6 @@ h2 {
 .letter-input:focus {
     transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.letter-input:focus {
     outline: none;
     border-color: #ff6b6b;
 }
@@ -211,4 +206,42 @@ h2 {
 
 .result.error {
     color: #e74c3c;
+}
+
+/* Celebration Animations */
+@keyframes celebrate {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+.puzzle-container.celebrate {
+    animation: celebrate 0.5s ease-in-out;
+}
+
+.puzzle-container.celebrate::before {
+    content: '✨';
+    position: absolute;
+    top: -20px;
+    left: 10%;
+    animation: sparkle 1s infinite;
+}
+
+.puzzle-container.celebrate::after {
+    content: '✨';
+    position: absolute;
+    bottom: -20px;
+    right: 10%;
+    animation: sparkle 1s infinite 0.5s;
+}
+
+/* Feedback Toast Animations */
+@keyframes slide-in {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
 }
