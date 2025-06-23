@@ -262,7 +262,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const letterGrid = document.getElementById('letter-grid');
     const wordList = document.getElementById('word-list');
     const submitButton = document.getElementById('submit-answer');
-    const clearButton = document.getElementById('clear-selections');
     const resultMessage = document.getElementById('result-message');
     const currentPuzzleDisplay = document.getElementById('current-puzzle');
     const totalPuzzlesDisplay = document.getElementById('total-puzzles');
@@ -673,32 +672,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Clear button handler
-    clearButton.addEventListener('click', () => {
-        // Get all currently selected cells from the DOM
-        const allSelectedCells = document.querySelectorAll('.grid-cell.selected');
-        
-        // Remove selected class from each cell
-        allSelectedCells.forEach(cell => {
-            cell.classList.remove('selected');
-        });
-        
-        // Reset selected cells array
-        selectedCells = [];
-        
-        // Play click sound
-        SoundEffects.playClickSound();
-        
-        // Show feedback
-        FeedbackSystem.showClick('Cleared your selection!');
-        
-        // Brief visual feedback
-        resultMessage.textContent = "Selection cleared!";
-        resultMessage.className = 'result';
-        setTimeout(() => {
-            resultMessage.textContent = "";
-        }, 1000);
-    });
+    // Clear button handler removed as requested
     
     // Skip button handler
     document.getElementById('skip-puzzle').addEventListener('click', () => {
