@@ -1,0 +1,486 @@
+/* Word Hunt Puzzle Styles */
+
+/* Global styles */
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-color: #f0f8ff;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #4b8bf0;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    color: white;
+    margin: 0 0 1rem;
+    font-size: 2.2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.nav-btn {
+    display: inline-block;
+    margin: 0.5rem;
+    padding: 8px 16px;
+    background-color: #fff;
+    color: #4b8bf0;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: #f0f0ff;
+}
+
+/* Main puzzle container */
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.puzzle-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.puzzle-layout {
+    display: flex;
+    flex: 1;
+    gap: 1.5rem;
+}
+
+.puzzle-left {
+    flex: 0 0 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.puzzle-right {
+    flex: 0 0 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.5rem;
+}
+
+/* Ensure responsive layout */
+@media (max-width: 860px) {
+    .puzzle-layout {
+        flex-direction: column;
+    }
+    
+    .puzzle-left, .puzzle-right {
+        flex: 1;
+        width: 100%;
+    }
+    
+    .letter-grid {
+        width: 100%;
+        max-width: 440px;
+        margin: 0 auto;
+        aspect-ratio: 1/1;
+        height: auto;
+    }
+}
+
+/* Puzzle title and description */
+.puzzle-container h2 {
+    color: #4b8bf0;
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    height: 10px;
+}
+
+.puzzle-description {
+    text-align: center;
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    height: 65px;
+}
+
+.puzzle-counter {
+    font-size: 0.9rem;
+    color: #888;
+    text-align: center;
+}
+
+/* Grid styles */
+.letter-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 3px;
+    margin: 0 auto;
+    max-width: 100%;
+    width: 440px;
+    height: 440px;
+    background-color: #edf4ff;
+    padding: 6px;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+    align-self: center;
+}
+
+.grid-cell {
+    width: 100%;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+/* Debug styles to visualize word placements - subtle design for debugging only */
+.grid-cell.debug-word-cell {
+    background-color: rgba(240, 247, 255, 0.7);
+    position: relative;
+}
+
+.grid-cell.debug-horizontal {
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px dotted rgba(75, 139, 240, 0.3);
+    border-top: 1px dotted rgba(75, 139, 240, 0.3);
+}
+
+.grid-cell.debug-vertical {
+    border-top: none;
+    border-bottom: none;
+    border-left: 1px dotted rgba(75, 139, 240, 0.3);
+    border-right: 1px dotted rgba(75, 139, 240, 0.3);
+}
+
+.grid-cell.debug-word-start {
+    border: 1px solid rgba(75, 139, 240, 0.5);
+    box-shadow: inset 0 0 3px rgba(75, 139, 240, 0.3);
+}
+
+/* Special debug markers to show which word is where - only visible in debug mode */
+.grid-cell.debug-word-cell::before {
+    content: attr(data-wordPart);
+    position: absolute;
+    top: -12px;
+    left: 1px;
+    font-size: 7px;
+    color: #4b8bf0;
+    opacity: 0.4;
+    font-weight: normal;
+}
+
+.grid-cell.debug-word-start::after {
+    content: "⬇️";
+    position: absolute;
+    bottom: -10px;
+    right: -2px;
+    font-size: 8px;
+    opacity: 0.4;
+}
+
+.grid-cell.debug-horizontal.debug-word-start::after {
+    content: "➡️";
+    font-size: 8px;
+    opacity: 0.4;
+}
+
+/* Subtle row highlighting to make sequences more visible */
+.grid-cell.even-row {
+    background-color: #ffffff;
+}
+
+.grid-cell.odd-row {
+    background-color: #f8faff;
+}
+
+.grid-cell:hover {
+    background-color: #f0f0ff;
+    transform: scale(1.03);
+}
+
+.grid-cell.selected {
+    background-color: #ffda94;
+    color: #333;
+    transform: scale(1.05);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Found cell animation */
+.grid-cell.found-cell {
+    background-color: #a8e6cf;
+    color: #026b47;
+    font-weight: bold;
+    transition: all 0.4s ease;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Make found cells more visually distinct based on direction */
+.grid-cell.found-cell.horizontal {
+    background: linear-gradient(90deg, #a8e6cf, #c4f1de);
+}
+
+.grid-cell.found-cell.vertical {
+    background: linear-gradient(180deg, #a8e6cf, #c4f1de);
+}
+
+/* Create a pulsing effect for found words */
+@keyframes foundPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.word-item[data-found="true"] {
+    animation: foundPulse 2s;
+}
+
+/* Word hint animations */
+.word-item[data-direction="horizontal"] .direction-hint {
+    animation: slideRight 2s infinite;
+    display: inline-block;
+}
+
+.word-item[data-direction="vertical"] .direction-hint {
+    animation: slideDown 2s infinite;
+    display: inline-block;
+}
+
+@keyframes slideRight {
+    0% { transform: translateX(-3px); }
+    50% { transform: translateX(3px); }
+    100% { transform: translateX(-3px); }
+}
+
+@keyframes slideDown {
+    0% { transform: translateY(-3px); }
+    50% { transform: translateY(3px); }
+    100% { transform: translateY(-3px); }
+}
+
+/* Word list */
+.word-list-container {
+    background-color: #f5f8ff;
+    padding: 0.8rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.word-list-container h3 {
+    text-align: center;
+    color: #4b8bf0;
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+}
+
+.word-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.word-item {
+    background-color: white;
+    padding: 8px 14px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.word-item .direction-hint {
+    font-size: 0.8rem;
+    margin-left: 5px;
+    opacity: 0.7;
+}
+
+.word-item.found {
+    background-color: #a8e6cf;
+    text-decoration: line-through;
+    opacity: 0.8;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 1.5rem;
+}
+
+.check-btn, .clear-btn, .skip-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 8px;
+}
+
+.check-btn {
+    background-color: #4b8bf0;
+    color: white;
+    box-shadow: 0 4px 8px rgba(75, 139, 240, 0.3);
+}
+
+.check-btn:hover {
+    background-color: #3a7adf;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(75, 139, 240, 0.4);
+}
+
+.clear-btn {
+    background-color: #f0f0f0;
+    color: #666;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.clear-btn:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.skip-btn {
+    background-color: #ffb347;
+    color: white;
+    box-shadow: 0 4px 8px rgba(255, 179, 71, 0.3);
+}
+
+.skip-btn:hover {
+    background-color: #ff9914;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 179, 71, 0.4);
+}
+
+/* Result message */
+.result {
+    text-align: center;
+    font-size: 1.1rem;
+    padding: 12px;
+    margin: 1rem 0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.result.success {
+    background-color: #a8e6cf;
+    color: #1e7d67;
+    animation: pulse 1s infinite;
+}
+
+.result.error {
+    background-color: #ffabab;
+    color: #9e3939;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+/* Animations */
+@keyframes celebrate {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); box-shadow: 0 8px 24px rgba(75, 139, 240, 0.4); }
+    100% { transform: scale(1); }
+}
+
+.celebrate {
+    animation: celebrate 0.6s;
+}
+
+/* Shake animation for incorrect selections */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.grid-cell.shake {
+    animation: shake 0.4s;
+    background-color: #ffabab;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .letter-grid {
+        grid-template-columns: repeat(10, 1fr);
+        max-width: 520px;
+        width: 480px;
+        height: 480px;
+    }
+    
+    .grid-cell {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .nav-btn {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .puzzle-container h2 {
+        font-size: 1.5rem;
+    }
+    
+    .grid-cell {
+        font-size: 1.4rem;
+    }
+    
+    .word-item {
+        padding: 6px 10px;
+        font-size: 0.9rem;
+    }
+}
