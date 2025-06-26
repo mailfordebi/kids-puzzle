@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, height=device-height, viewport-fit=cover">
+    <title>Fun Riddles - Kids Fun Puzzles</title>
+    <link rel="stylesheet" href="./multi_riddle.css">
+</head>
+<body>
+    <header>
+        <h1>🎮 Fun Riddles 🧩</h1>
+        <nav>
+            <a href="../index.html" class="nav-btn">Home</a>
+            <a href="../word-hunt/wordhunt.html" class="nav-btn">Word Hunt</a>
+            <a href="../puzzle3/puzzle3.html" class="nav-btn">Math Sequence</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="puzzle-progress">
+            <div class="left-spacer"></div>
+            <h2 id="current-challenge-title">Secret Code Challenge</h2>
+            <button id="restart-game" class="reset-btn">↻ Reset</button>
+        </div>
+
+        <!-- Secret Code Puzzle (Level 1) -->
+        <div id="secret-code-puzzle" class="puzzle-container active" data-level="1">
+            <div class="puzzle-description">
+                <p>Each letter has a secret symbol! Can you decode the message?</p>
+                <p class="puzzle-counter">Puzzle <span id="current-puzzle-1">1</span> of <span id="total-puzzles-1">8</span></p>
+            </div>
+            <div class="symbols-guide">
+                <!-- Will be filled by JavaScript with symbol mappings -->
+            </div>
+            <div class="puzzle-content">
+                <div class="secret-message">
+                    <!-- Will be filled by JavaScript with encoded message -->
+                </div>
+                <div class="answer-inputs">
+                    <!-- Will be filled by JavaScript with input boxes -->
+                </div>
+                <div class="controls-row">
+                    <button id="prev-puzzle-1" class="nav-puzzle-btn">Previous</button>
+                    <button id="check-answer-1" class="check-btn">Check Answer</button>
+                    <button id="next-puzzle-1" class="nav-puzzle-btn">Next</button>
+                </div>
+                <div id="result-message-1" class="result"></div>
+            </div>
+        </div>
+
+        <!-- Emoji Puzzle (Level 2) -->
+        <div id="emoji-puzzle" class="puzzle-container" data-level="2">
+            <div class="puzzle-description">
+                <p>Match the emojis with their secret letters!</p>
+                <p class="puzzle-counter">Puzzle <span id="current-puzzle-2">1</span> of <span id="total-puzzles-2">8</span></p>
+            </div>
+            <div class="symbols-guide">
+                <!-- Will be filled by JavaScript -->
+            </div>
+            <div class="puzzle-content">
+                <div class="secret-message">
+                    <!-- Will be filled by JavaScript -->
+                </div>
+                <div class="answer-inputs">
+                    <!-- Will be filled by JavaScript -->
+                </div>
+                <div class="controls-row">
+                    <button id="prev-puzzle-2" class="nav-puzzle-btn">Previous</button>
+                    <button id="check-answer-2" class="check-btn">Check Answer</button>
+                    <button id="next-puzzle-2" class="nav-puzzle-btn">Next</button>
+                </div>
+                <div id="result-message-2" class="result"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../sounds/soundGenerator.js"></script>
+    <script src="../sounds.js"></script>
+    <script src="../feedback.js" defer></script>
+    <script src="./multi_riddle.js" defer></script>
+</body>
+</html>
