@@ -66,7 +66,13 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             
             // Show selected activity
-            document.getElementById(activity + '-activity').classList.add('active');
+            const activityElement = document.getElementById(activity + '-activity');
+            if (activityElement) {
+                console.log('Showing activity:', activity);
+                activityElement.classList.add('active');
+            } else {
+                console.error('Could not find activity element:', activity + '-activity');
+            }
             
             // Initialize the activity
             switch(activity) {
@@ -79,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 case 'sequence':
                     initPatternActivity();
                     break;
+                // Removed other activities
             }
         });
     });
@@ -987,6 +994,59 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Sequence Builder Run button
+    const sequenceRunButton = document.getElementById('sequence-run');
+    if (sequenceRunButton) {
+        sequenceRunButton.addEventListener('click', function() {
+            runSequence();
+        });
+    }
+
+    function runSequence() {
+        const animationContainer = document.getElementById('animation-container');
+        const resultMessage = document.getElementById('sequence-result');
+        
+        if (!animationContainer || !resultMessage) return;
+        
+        // Clear previous animations
+        animationContainer.innerHTML = '';
+        
+        if (currentSequence.length === 0) {
+            resultMessage.textContent = 'Add some steps to your sequence first!';
+            resultMessage.className = 'result-message error';
+            return;
+        }
+        
+        // Display a visual representation of the sequence running
+        resultMessage.textContent = 'Running your sequence...';
+        resultMessage.className = 'result-message info';
+        
+        // Create a visual element for each step
+        const task = sequenceBuilderTasks[currentSequenceTask % sequenceBuilderTasks.length];
+        const stepDelay = 1000; // 1 second per step
+        
+        currentSequence.forEach((step, index) => {
+            setTimeout(() => {
+                // Highlight the step being run
+                const stepElement = document.createElement('div');
+                stepElement.className = 'running-step';
+                stepElement.textContent = `Running: ${step}`;
+                animationContainer.innerHTML = '';
+                animationContainer.appendChild(stepElement);
+                
+                playSound('click');
+                
+                // Last step completed
+                if (index === currentSequence.length - 1) {
+                    setTimeout(() => {
+                        resultMessage.textContent = 'Sequence completed! Check your answer to see if it was correct.';
+                        resultMessage.className = 'result-message info';
+                    }, stepDelay);
+                }
+            }, index * stepDelay);
+        });
+    }
+
     function checkPatternAnswer() {
         const resultMessage = document.getElementById('pattern-result');
         if (!resultMessage) return;
@@ -1057,139 +1117,638 @@ document.addEventListener('DOMContentLoaded', function() {
         if (totalSpan) totalSpan.textContent = '10';
     }
 
-    // Function to create treasure particles for celebration
-    function createTreasureParticles(cell) {
-        console.log('Creating treasure hunt celebration');
+    // Sequence Builder Activity
+    const sequenceBuilderTasks = [
+        {
+            id: 1,
+            title: "Help the robot find treasure!",
+            description: "The robot needs to navigate through the maze to find the treasure. Put the steps in the right order!",
+            image: "robot-maze.svg",
+            blocks: ["Move forward", "Turn right", "Move forward", "Turn left", "Move forward", "Pick up treasure"],
+            solution: ["Move forward", "Turn right", "Move forward", "Turn left", "Move forward", "Pick up treasure"]
+        },
+        {
+            id: 2,
+            title: "Make a yummy sandwich!",
+            description: "Put the steps in order to make a delicious sandwich for lunch!",
+            image: "sandwich.svg",
+            blocks: ["Place bread slice", "Add cheese", "Add lettuce", "Add tomato", "Add top bread slice", "Cut sandwich in half"],
+            solution: ["Place bread slice", "Add cheese", "Add lettuce", "Add tomato", "Add top bread slice", "Cut sandwich in half"]
+        },
+        {
+            id: 3,
+            title: "Plant a beautiful flower!",
+            description: "Help arrange the steps to plant a flower in the garden!",
+            image: "flower.svg",
+            blocks: ["Dig a hole", "Add soil", "Place seed", "Water the seed", "Wait for sunshine", "Watch it grow"],
+            solution: ["Dig a hole", "Place seed", "Add soil", "Water the seed", "Wait for sunshine", "Watch it grow"]
+        }
+    ];
+
+    let currentSequenceTask = 0;
+    let sequencesSolved = 0;
+    let sequencesLevel = 1;
+    let currentSequence = [];
+
+    function initSequenceBuilderActivity() {
+        console.log('Initializing Sequence Builder Activity');
         
-        // Create treasure-themed celebration elements with safe emojis
-        // Using string literals for each emoji to avoid encoding issues
-        const treasureEmojis = [
-            String.fromCodePoint(0x1F4B0), // 💰 money bag
-            String.fromCodePoint(0x1F3C6), // 🏆 trophy
-            String.fromCodePoint(0x2B50),  // ⭐ star
-            String.fromCodePoint(0x1F48E), // 💎 gem
-            String.fromCodePoint(0x1F50D), // 🔍 magnifying glass
-            String.fromCodePoint(0x1F5FA, 0xFE0F), // 🗺️ map
-            String.fromCodePoint(0x1F511), // 🔑 key
-            String.fromCodePoint(0x1F451), // 👑 crown
-            String.fromCodePoint(0x1F9E9), // 🧩 puzzle piece
-            String.fromCodePoint(0x1F3AF)  // 🎯 bullseye
+        // Reset state
+        currentSequenceTask = 0;
+        sequencesSolved = 0;
+        sequencesLevel = 1;
+        currentSequence = [];
+        
+        // Setup activity
+        updateSequenceBuilderStats();
+        
+        try {
+            // Preload images for better performance
+            sequenceBuilderTasks.forEach((task, index) => {
+                const img = new Image();
+                if (task.id === 1) img.src = './images/robot-maze.svg';
+                else if (task.id === 2) img.src = './images/sandwich.svg';
+                else if (task.id === 3) img.src = './images/flower.svg';
+                
+                img.onerror = () => console.error(`Failed to preload image for task ${index + 1}`);
+            });
+            
+            // Display first task
+            displaySequenceTask();
+            
+            // Debug state
+            debugSequenceState();
+            
+            // Reset result message
+            const resultMessage = document.getElementById('sequence-result');
+            if (resultMessage) {
+                resultMessage.textContent = 'Drag the blocks to create your sequence!';
+                resultMessage.className = 'result-message info';
+            }
+            
+            return true;
+        } catch (err) {
+            console.error('Error initializing Sequence Builder:', err);
+            return false;
+        }
+    }
+
+    function displaySequenceTask() {
+        const taskDescription = document.getElementById('task-description');
+        const taskImage = document.getElementById('task-image');
+        const instructionBlocks = document.getElementById('instruction-blocks');
+        const sequenceDropzone = document.getElementById('sequence-dropzone');
+        
+        if (!taskDescription || !taskImage || !instructionBlocks || !sequenceDropzone) return;
+        
+        // Reset
+        instructionBlocks.innerHTML = '';
+        sequenceDropzone.innerHTML = '';
+        currentSequence = [];
+        
+        // Get current task
+        const task = sequenceBuilderTasks[currentSequenceTask % sequenceBuilderTasks.length];
+        
+        // Display task info
+        taskDescription.textContent = task.description;
+        
+        // Set the image with error handling
+        try {
+            if (task.id === 1) {
+                taskImage.src = './images/robot-maze.svg';
+                taskImage.alt = 'Robot in a maze';
+            } else if (task.id === 2) {
+                taskImage.src = './images/sandwich.svg';
+                taskImage.alt = 'Making a sandwich';
+            } else if (task.id === 3) {
+                taskImage.src = './images/flower.svg';
+                taskImage.alt = 'Planting a flower';
+            }
+            
+            // Make sure the image is visible
+            taskImage.style.display = 'inline-block';
+            taskImage.style.maxHeight = '200px';
+            taskImage.style.border = '1px solid #ddd';
+            taskImage.style.borderRadius = '8px';
+            taskImage.style.padding = '5px';
+            taskImage.style.backgroundColor = '#fff';
+            
+            // Handle image load error
+            taskImage.onerror = function() {
+                console.error('Failed to load image: ' + this.src);
+                // Create a fallback display instead of hiding
+                this.src = ''; // Clear the source
+                this.alt = 'Image not available';
+                this.style.backgroundColor = '#f0f0f0';
+                this.style.display = 'flex';
+                this.style.alignItems = 'center';
+                this.style.justifyContent = 'center';
+                this.style.height = '150px';
+                this.style.width = '100%';
+                
+                // Add text explaining the missing image
+                const imageContainer = document.querySelector('.task-image-container');
+                if (imageContainer) {
+                    const errorMessage = document.createElement('div');
+                    errorMessage.textContent = 'Image not available, but you can still solve the puzzle!';
+                    errorMessage.style.color = '#d9534f';
+                    errorMessage.style.padding = '10px';
+                    errorMessage.style.textAlign = 'center';
+                    errorMessage.style.fontWeight = 'bold';
+                    imageContainer.appendChild(errorMessage);
+                }
+            };
+        } catch (err) {
+            console.error('Error setting task image:', err);
+        }
+        
+        // Add instruction blocks
+        const shuffledBlocks = [...task.blocks];
+        shuffleArray(shuffledBlocks);
+        
+        shuffledBlocks.forEach(block => {
+            const blockElement = document.createElement('div');
+            blockElement.className = 'instruction-block';
+            blockElement.textContent = block;
+            blockElement.draggable = true;
+            
+            // Enhanced drag start event with better data transfer
+            blockElement.addEventListener('dragstart', function(e) {
+                e.dataTransfer.setData('text/plain', block);
+                e.dataTransfer.effectAllowed = 'move';
+                this.classList.add('dragging');
+                console.log('Drag started with block:', block);
+            });
+            
+            blockElement.addEventListener('dragend', function() {
+                this.classList.remove('dragging');
+                console.log('Drag ended');
+            });
+            
+            // Add click alternative for mobile or if drag fails
+            blockElement.addEventListener('click', function() {
+                console.log('Block clicked:', block);
+                // Add the block to the sequence on click as well
+                addBlockToSequence(block);
+            });
+            
+            instructionBlocks.appendChild(blockElement);
+        });
+        
+        // Helper function to add a block to the sequence
+        function addBlockToSequence(blockText) {
+            const blockElement = document.createElement('div');
+            blockElement.className = 'instruction-block dropped';
+            blockElement.textContent = blockText;
+            
+            blockElement.addEventListener('click', function() {
+                const index = currentSequence.indexOf(blockText);
+                if (index !== -1) {
+                    currentSequence.splice(index, 1);
+                    this.remove();
+                    playSound('click');
+                    console.log('Block removed from sequence:', blockText);
+                    console.log('Current sequence:', currentSequence);
+                }
+            });
+            
+            sequenceDropzone.appendChild(blockElement);
+            currentSequence.push(blockText);
+            playSound('click');
+            console.log('Block added to sequence:', blockText);
+            console.log('Current sequence:', currentSequence);
+        }
+        
+        // Set up dropzone with improved event handling
+        sequenceDropzone.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            this.classList.add('drag-over');
+        });
+        
+        sequenceDropzone.addEventListener('dragleave', function() {
+            this.classList.remove('drag-over');
+        });
+        
+        sequenceDropzone.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.classList.remove('drag-over');
+            
+            const block = e.dataTransfer.getData('text/plain');
+            console.log('Drop event with block:', block);
+            
+            // Only add if the block is valid
+            if (block && task.blocks.includes(block)) {
+                addBlockToSequence(block);
+            }
+        });
+        
+        // Reset result message
+        const resultMessage = document.getElementById('sequence-result');
+        if (resultMessage) {
+            resultMessage.textContent = '';
+            resultMessage.className = 'result-message';
+        }
+    }
+
+    // Loop Explorer Activity
+    const loopExplorerTasks = [
+        {
+            id: 1,
+            title: "Paint a fence",
+            description: "Help paint all 5 fence posts using loops instead of repeating commands!",
+            expectedResult: ["Paint post", "Paint post", "Paint post", "Paint post", "Paint post"],
+            availableBlocks: [
+                { type: 'repeat', text: 'Repeat 5 times' },
+                { type: 'action', text: 'Paint post' }
+            ]
+        },
+        {
+            id: 2,
+            title: "Dance routine",
+            description: "Create a dance routine with 3 spins and 2 jumps!",
+            expectedResult: ["Spin", "Spin", "Spin", "Jump", "Jump"],
+            availableBlocks: [
+                { type: 'repeat', text: 'Repeat 3 times' },
+                { type: 'repeat', text: 'Repeat 2 times' },
+                { type: 'action', text: 'Spin' },
+                { type: 'action', text: 'Jump' }
+            ]
+        },
+        {
+            id: 3,
+            title: "Plant flowers",
+            description: "Plant a row of 4 flowers, then water each one!",
+            expectedResult: ["Plant flower", "Plant flower", "Plant flower", "Plant flower", "Water flower", "Water flower", "Water flower", "Water flower"],
+            availableBlocks: [
+                { type: 'repeat', text: 'Repeat 4 times' },
+                { type: 'action', text: 'Plant flower' },
+                { type: 'action', text: 'Water flower' }
+            ]
+        }
+    ];
+
+    let currentLoopTask = 0;
+    let loopsSolved = 0;
+    let loopLevel = 1;
+    let loopProgram = [];
+
+    function initLoopExplorerActivity() {
+        currentLoopTask = 0;
+        loopsSolved = 0;
+        loopLevel = 1;
+        displayLoopTask();
+    }
+
+    function displayLoopTask() {
+        const loopDescription = document.getElementById('loop-description');
+        const loopPreview = document.getElementById('loop-preview');
+        const loopBlocks = document.getElementById('loop-blocks');
+        const programContainer = document.getElementById('program-container');
+        
+        if (!loopDescription || !loopPreview || !loopBlocks || !programContainer) return;
+        
+        // Reset
+        loopBlocks.innerHTML = '';
+        programContainer.innerHTML = '';
+        loopProgram = [];
+        
+        // Get current task
+        const task = loopExplorerTasks[currentLoopTask % loopExplorerTasks.length];
+        
+        // Display task info
+        loopDescription.textContent = task.description;
+        
+        // Set preview image based on task
+        loopPreview.innerHTML = '';
+        const previewImage = document.createElement('img');
+        previewImage.className = 'img-fluid';
+        previewImage.style.maxHeight = '150px';
+        
+        if (task.id === 1) {
+            previewImage.src = './images/fence.svg';
+            previewImage.alt = 'Fence painting task';
+        } else if (task.id === 2) {
+            previewImage.src = './images/dance.svg';
+            previewImage.alt = 'Dance routine task';
+        } else {
+            // Default or third task
+            previewImage.src = './images/flower.svg';
+            previewImage.alt = 'Plant flowers task';
+        }
+        
+        loopPreview.appendChild(previewImage);
+        
+        // Add blocks
+        task.availableBlocks.forEach(block => {
+            const blockElement = document.createElement('div');
+            blockElement.className = `loop-block ${block.type}`;
+            
+            const icon = document.createElement('i');
+            if (block.type === 'repeat') {
+                icon.className = 'fas fa-redo-alt';
+            } else {
+                icon.className = 'fas fa-play';
+            }
+            blockElement.appendChild(icon);
+            
+            const textSpan = document.createElement('span');
+            textSpan.textContent = block.text;
+            blockElement.appendChild(textSpan);
+            
+            blockElement.draggable = true;
+            
+            blockElement.addEventListener('click', function() {
+                const blockCopy = {...block};
+                addBlockToProgram(blockCopy);
+                playSound('click');
+            });
+            
+            loopBlocks.appendChild(blockElement);
+        });
+    }
+
+    function addBlockToProgram(block) {
+        const programContainer = document.getElementById('program-container');
+        if (!programContainer) return;
+        
+        const blockElement = document.createElement('div');
+        blockElement.className = `loop-block ${block.type}`;
+        
+        const icon = document.createElement('i');
+        if (block.type === 'repeat') {
+            icon.className = 'fas fa-redo-alt';
+        } else {
+            icon.className = 'fas fa-play';
+        }
+        blockElement.appendChild(icon);
+        
+        const textSpan = document.createElement('span');
+        textSpan.textContent = block.text;
+        blockElement.appendChild(textSpan);
+        
+        // Add remove button
+        const removeBtn = document.createElement('button');
+        removeBtn.className = 'remove-block';
+        removeBtn.innerHTML = '&times;';
+        removeBtn.style.marginLeft = 'auto';
+        removeBtn.style.background = 'none';
+        removeBtn.style.border = 'none';
+        removeBtn.style.color = 'white';
+        removeBtn.style.fontSize = '1.2rem';
+        removeBtn.style.cursor = 'pointer';
+        
+        removeBtn.addEventListener('click', function() {
+            const index = loopProgram.indexOf(block);
+            if (index !== -1) {
+                loopProgram.splice(index, 1);
+                blockElement.remove();
+                playSound('click');
+            }
+        });
+        
+        blockElement.appendChild(removeBtn);
+        programContainer.appendChild(blockElement);
+        loopProgram.push(block);
+    }
+
+    // Sequence Builder check button
+    const sequenceCheckButton = document.getElementById('sequence-check');
+    if (sequenceCheckButton) {
+        sequenceCheckButton.addEventListener('click', function() {
+            checkSequenceAnswer();
+        });
+    }
+
+    // Sequence Builder reset button
+    const sequenceResetButton = document.getElementById('sequence-reset');
+    if (sequenceResetButton) {
+        sequenceResetButton.addEventListener('click', function() {
+            playSound('click');
+            currentSequence = [];
+            displaySequenceTask();
+        });
+    }
+
+    // Loop Explorer check button
+    const loopCheckButton = document.getElementById('loop-check');
+    if (loopCheckButton) {
+        loopCheckButton.addEventListener('click', function() {
+            checkLoopAnswer();
+        });
+    }
+
+    // Loop Explorer reset button
+    const loopResetButton = document.getElementById('loop-reset');
+    if (loopResetButton) {
+        loopResetButton.addEventListener('click', function() {
+            playSound('click');
+            loopProgram = [];
+            displayLoopTask();
+        });
+    }
+
+    // Loop Explorer run button
+    const loopRunButton = document.getElementById('loop-run');
+    if (loopRunButton) {
+        loopRunButton.addEventListener('click', function() {
+            executeLoopProgram();
+        });
+    }
+
+    function checkSequenceAnswer() {
+        const resultMessage = document.getElementById('sequence-result');
+        if (!resultMessage) return;
+        
+        const currentTask = sequenceBuilderTasks[currentSequenceTask % sequenceBuilderTasks.length];
+        
+        if (currentSequence.length < currentTask.solution.length) {
+            resultMessage.textContent = 'Your sequence is too short. Add more steps!';
+            resultMessage.className = 'result-message error';
+            return;
+        }
+        
+        if (currentSequence.length > currentTask.solution.length) {
+            resultMessage.textContent = 'Your sequence has too many steps. Try to be more efficient!';
+            resultMessage.className = 'result-message error';
+            return;
+        }
+        
+        const isCorrect = arraysEqual(currentSequence, currentTask.solution);
+        
+        if (isCorrect) {
+            playSound('success');
+            resultMessage.textContent = '🎉 Correct! Your sequence works perfectly!';
+            resultMessage.className = 'result-message success animated-feedback';
+            
+            sequencesSolved++;
+            
+            // Level up every 3 sequences
+            if (sequencesSolved % 3 === 0 && sequencesSolved > 0 && sequencesLevel < 3) {
+                sequencesLevel++;
+                resultMessage.textContent = `🎉 Level Up! You're now at Level ${sequencesLevel}!`;
+            }
+            
+            // After a delay, show next sequence
+            setTimeout(() => {
+                currentSequenceTask++;
+                displaySequenceTask();
+            }, 2000);
+        } else {
+            playSound('error');
+            resultMessage.textContent = '❌ That sequence doesn\'t work. Try a different order!';
+            resultMessage.className = 'result-message error';
+        }
+    }
+
+    function executeLoopProgram() {
+        const executionContainer = document.getElementById('execution-container');
+        if (!executionContainer) return;
+        
+        executionContainer.innerHTML = '';
+        
+        // Flatten program (expand loops)
+        const executedSteps = [];
+        
+        try {
+            loopProgram.forEach(block => {
+                if (block.type === 'repeat') {
+                    // Extract the number from "Repeat X times"
+                    const times = parseInt(block.text.match(/\d+/)[0]);
+                    
+                    // Look for the next action block
+                    const nextActionIndex = loopProgram.indexOf(block) + 1;
+                    if (nextActionIndex < loopProgram.length && loopProgram[nextActionIndex].type === 'action') {
+                        const action = loopProgram[nextActionIndex].text;
+                        
+                        // Add the action multiple times
+                        for (let i = 0; i < times; i++) {
+                            executedSteps.push(action);
+                        }
+                    }
+                } else if (block.type === 'action') {
+                    // Skip actions that follow a repeat (they're handled by the repeat)
+                    const prevIndex = loopProgram.indexOf(block) - 1;
+                    if (prevIndex < 0 || loopProgram[prevIndex].type !== 'repeat') {
+                        executedSteps.push(block.text);
+                    }
+                }
+            });
+            
+            // Display executed steps
+            executedSteps.forEach((step, index) => {
+                setTimeout(() => {
+                    const stepElement = document.createElement('div');
+                    stepElement.className = 'loop-step';
+                    stepElement.textContent = `> ${step}`;
+                    executionContainer.appendChild(stepElement);
+                    executionContainer.scrollTop = executionContainer.scrollHeight;
+                    playSound('click');
+                }, index * 500);
+            });
+        } catch (err) {
+            console.error('Error executing program:', err);
+            executionContainer.textContent = 'Error in program execution!';
+        }
+        
+        return executedSteps;
+    }
+
+    function checkLoopAnswer() {
+        const resultMessage = document.getElementById('loop-result');
+        if (!resultMessage) return;
+        
+        const executedSteps = executeLoopProgram();
+        const currentTask = loopExplorerTasks[currentLoopTask % loopExplorerTasks.length];
+        
+        // Check if executed steps match expected result
+        const isCorrect = arraysEqual(executedSteps, currentTask.expectedResult);
+        
+        setTimeout(() => {
+            if (isCorrect) {
+                playSound('success');
+                resultMessage.textContent = '🎉 Correct! Your loop works perfectly!';
+                resultMessage.className = 'result-message success animated-feedback';
+                
+                loopsSolved++;
+                
+                // Level up every 3 loops
+                if (loopsSolved % 3 === 0 && loopsSolved > 0 && loopLevel < 3) {
+                    loopLevel++;
+                    resultMessage.textContent = `🎉 Level Up! You're now at Level ${loopLevel}!`;
+                }
+                
+                // After a delay, show next loop task
+                setTimeout(() => {
+                    currentLoopTask++;
+                    displayLoopTask();
+                }, 2000);
+            } else {
+                playSound('error');
+                resultMessage.textContent = '❌ That doesn\'t produce the expected result. Try again!';
+                resultMessage.className = 'result-message error';
+            }
+        }, executedSteps.length * 500 + 500); // Wait for execution animation to complete
+    }
+
+    function updateSequenceBuilderStats() {
+        const levelDisplay = document.getElementById('sequence-builder-level');
+        const progressBar = document.getElementById('sequence-builder-progress');
+        
+        if (levelDisplay) {
+            levelDisplay.textContent = sequencesLevel;
+        }
+        
+        if (progressBar) {
+            const progressPercent = (sequencesSolved % 3) * 33.33;
+            progressBar.style.width = `${progressPercent}%`;
+        }
+        
+        console.log('Sequence Builder Stats:', {
+            level: sequencesLevel,
+            solved: sequencesSolved,
+            currentTask: currentSequenceTask,
+            currentSequence: currentSequence
+        });
+    }
+    
+    // Debug function to check sequence state
+    function debugSequenceState() {
+        try {
+            console.log('Current Sequence Builder State:');
+            console.log('Task:', sequenceBuilderTasks[currentSequenceTask % sequenceBuilderTasks.length]);
+            console.log('Current Sequence:', currentSequence);
+            console.log('Image Elements:', document.getElementById('task-image'));
+            console.log('Drop Zone:', document.getElementById('sequence-dropzone'));
+            console.log('Instructions:', document.getElementById('instruction-blocks'));
+            return true;
+        } catch (err) {
+            console.error('Debug error:', err);
+            return false;
+        }
+    }
+
+    // Helper function for checking image paths
+    window.addEventListener('load', function() {
+        console.log('Checking activity images...');
+        
+        const images = [
+            './images/robot-maze.svg',
+            './images/sandwich.svg',
+            './images/flower.svg',
+            './images/fence.svg',
+            './images/dance.svg'
         ];
         
-        const treasurePhrases = ['GOLD', 'GEMS', 'FOUND', 'PRIZE', 'CHEST', 'MAP', 'X MARKS', 'LOOT', 'BOUNTY', 'TREASURE'];
-        
-        // Clear any previous content and set special class
-        cell.innerHTML = ''; // Clear previous content
-        cell.classList.add('treasure-found');
-        
-        // Simple celebration effect for the cell
-        cell.style.animation = 'none'; // Reset animation
-        setTimeout(() => {
-            cell.style.animation = 'treasureFound 1s ease-out infinite';
-        }, 10);
-        
-        // Show the trophy/treasure in the cell
-        const treasure = document.createElement('div');
-        treasure.className = 'treasure-icon';
-        treasure.textContent = '🏆';
-        treasure.style.fontSize = '2rem';
-        cell.appendChild(treasure);
-        
-        // Add a "treasure found" marker
-        const treasureMarker = document.createElement('div');
-        treasureMarker.className = 'treasure-marker';
-        treasureMarker.innerHTML = '<span>TREASURE!</span>';
-        treasureMarker.style.position = 'absolute';
-        treasureMarker.style.top = '-20px';
-        treasureMarker.style.left = '50%';
-        treasureMarker.style.transform = 'translateX(-50%)';
-        treasureMarker.style.backgroundColor = 'gold';
-        treasureMarker.style.color = '#8B4513';
-        treasureMarker.style.padding = '2px 5px';
-        treasureMarker.style.borderRadius = '4px';
-        treasureMarker.style.fontSize = '0.8rem';
-        treasureMarker.style.fontWeight = 'bold';
-        treasureMarker.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
-        cell.appendChild(treasureMarker);
-        
-        // Create treasure celebration particles
-        for (let i = 0; i < 8; i++) {
-            setTimeout(() => {
-                try {
-                    // Create particle element
-                    const particle = document.createElement('div');
-                    
-                    // Alternate between emoji and treasure text
-                    if (i % 2 === 0) {
-                        particle.className = 'treasure-particle emoji';
-                        particle.textContent = treasureEmojis[i % treasureEmojis.length];
-                    } else {
-                        particle.className = 'treasure-particle text';
-                        particle.textContent = treasurePhrases[i % treasurePhrases.length];
-                    }
-                    
-                    // Apply inline styles to ensure they work without CSS class definitions
-                    particle.style.position = 'absolute';
-                    particle.style.zIndex = '100';
-                    particle.style.fontWeight = 'bold';
-                    particle.style.color = i % 2 === 0 ? 'goldenrod' : '#8B4513';
-                    particle.style.textShadow = '0 0 3px white';
-                    
-                    // Size variation
-                    const randomSize = 0.8 + Math.random() * 0.4;
-                    particle.style.fontSize = `${randomSize}rem`;
-                    
-                    // Position particles in a circular pattern around the cell
-                    const angle = (i / 8) * Math.PI * 2;
-                    const distance = 30 + Math.random() * 20;
-                    const x = Math.sin(angle) * distance;
-                    const y = Math.cos(angle) * distance;
-                    particle.style.transform = `translate(${x}px, ${y}px)`;
-                    
-                    // Custom animation since we can't rely on CSS classes
-                    particle.animate([
-                        { transform: `translate(${x}px, ${y}px) scale(0.5)`, opacity: 0 },
-                        { transform: `translate(${x}px, ${y}px) scale(1.2)`, opacity: 1, offset: 0.5 },
-                        { transform: `translate(${x}px, ${y - 30}px) scale(1)`, opacity: 0 }
-                    ], {
-                        duration: 2000,
-                        iterations: 1,
-                        easing: 'ease-out'
-                    });
-                    
-                    // Add to cell
-                    if (cell) {
-                        cell.appendChild(particle);
-                        
-                        // Remove after animation
-                        setTimeout(() => {
-                            if (particle && particle.parentNode) {
-                                particle.parentNode.removeChild(particle);
-                            }
-                        }, 2500);
-                    }
-                } catch (err) {
-                    console.error('Error in treasure particles:', err);
-                }
-            }, i * 250);
-        }
-    }
-
-    // Helper function: Shuffle array
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
-    }
-
-    // Helper function: Compare arrays
-    function arraysEqual(a, b) {
-        if (a.length !== b.length) return false;
-        for (let i = 0; i < a.length; i++) {
-            if (a[i] !== b[i]) return false;
-        }
-        return true;
-    }
+        images.forEach(src => {
+            const img = new Image();
+            img.onload = function() {
+                console.log('✅ Image loaded successfully: ' + src);
+            };
+            img.onerror = function() {
+                console.error('❌ Failed to load image: ' + src);
+            };
+            img.src = src;
+        });
+    });
 });

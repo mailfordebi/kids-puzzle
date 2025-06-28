@@ -412,7 +412,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Level 1 Previous button handler
     document.getElementById('prev-puzzle-1').addEventListener('click', () => {
-        FeedbackSystem.showClick('Going to previous puzzle...');
+        FeedbackSystem.showClick('Moving to another puzzle...');
         if (currentWord1Index > 0) {
             currentWord1Index--;
             setupLevel1Puzzle();
@@ -421,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Level 1 Next button handler
     document.getElementById('next-puzzle-1').addEventListener('click', () => {
-        FeedbackSystem.showClick('Going to next puzzle...');
+        FeedbackSystem.showClick('Moving to another puzzle...');
         if (currentWord1Index < level1Words.length - 1) {
             currentWord1Index++;
             setupLevel1Puzzle();
@@ -436,7 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Level 2 Previous button handler
     document.getElementById('prev-puzzle-2').addEventListener('click', () => {
-        FeedbackSystem.showClick('Going to previous puzzle...');
+        FeedbackSystem.showClick('Moving to another puzzle...');
         if (currentWord2Index > 0) {
             currentWord2Index--;
             setupLevel2Puzzle();
@@ -448,7 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Level 2 Next button handler
     document.getElementById('next-puzzle-2').addEventListener('click', () => {
-        FeedbackSystem.showClick('Going to next puzzle...');
+        FeedbackSystem.showClick('Moving to another puzzle...');
         if (currentWord2Index < level2Words.length - 1) {
             currentWord2Index++;
             setupLevel2Puzzle();

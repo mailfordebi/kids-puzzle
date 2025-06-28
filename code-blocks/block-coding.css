@@ -1,0 +1,185 @@
+/* Base styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+}
+
+/* Block styling */
+.block {
+    padding: 10px 15px;
+    margin: 5px 0;
+    border-radius: 8px;
+    cursor: grab;
+    user-select: none;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.block:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.block:active {
+    cursor: grabbing;
+}
+
+.block .icon {
+    margin-right: 8px;
+    font-size: 1rem;
+}
+
+/* Block types */
+.block-motion {
+    background-color: #4361ee;
+    border: 2px solid #3a56d4;
+}
+
+.block-loop {
+    background-color: #f72585;
+    border: 2px solid #e91e63;
+}
+
+.block-logic {
+    background-color: #ff9e00;
+    border: 2px solid #e67e00;
+}
+
+.block-procedure {
+    background-color: #7209b7;
+    border: 2px solid #6207a0;
+}
+
+.block-placed {
+    opacity: 0.6;
+}
+
+/* Workspace styling */
+.workspace {
+    min-height: 300px;
+    background-color: #e9ecef;
+    border: 2px dashed #6c757d;
+    padding: 15px;
+    position: relative;
+}
+
+.blocks-container {
+    min-height: 200px;
+    padding: 10px 0;
+}
+
+.program-start, .program-end {
+    background-color: #212529;
+    color: white;
+    padding: 8px 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* Challenge visualization */
+.challenge-visualization img {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 5px;
+    background-color: #fff;
+}
+
+/* Animation area */
+.animation-area {
+    min-height: 150px;
+    background-color: #f8f9fa;
+}
+
+/* Block palette */
+.block-palette {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Feedback states */
+.feedback {
+    min-height: 60px;
+}
+
+.feedback-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.feedback-error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.feedback-running {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+/* Animation for running blocks */
+.block-running {
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Container for blocks that can be nested (for loops, conditionals) */
+.block-container {
+    padding-left: 20px;
+    margin-left: 10px;
+    border-left: 3px solid #6c757d;
+}
+
+/* Challenges list */
+.challenges-list .list-group-item.active {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+/* Helper classes */
+.dragging {
+    opacity: 0.7;
+}
+
+.block-placeholder {
+    background-color: rgba(0,0,0,0.1);
+    border: 2px dashed #6c757d;
+    border-radius: 8px;
+    height: 42px;
+    margin: 5px 0;
+}
+
+/* Animation steps */
+.animation-step {
+    padding: 8px 12px;
+    margin: 5px 0;
+    border-radius: 5px;
+    background-color: #e9ecef;
+    border-left: 3px solid #0d6efd;
+}
+
+/* Progress indicator */
+.progress {
+    height: 10px;
+    border-radius: 5px;
+}
+
+/* Footer styling */
+.footer {
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 3rem;
+    color: #333;
+    border-top: 2px solid #eaeaea;
+}

@@ -680,13 +680,13 @@ document.addEventListener('DOMContentLoaded', () => {
         SoundEffects.playClickSound();
         
         // Show feedback
-        FeedbackSystem.showClick('Skipping to next puzzle...');
+        FeedbackSystem.showClick('Loading another puzzle...');
         
         // Add visual feedback
-        resultMessage.textContent = "Skipping to the next puzzle...";
+        resultMessage.textContent = "Loading another puzzle...";
         resultMessage.className = 'result';
         
-        // Move to next puzzle with a short delay
+        // Move to another puzzle with a short delay
         setTimeout(() => {
             currentPuzzleIndex = (currentPuzzleIndex + 1) % puzzles.length;
             

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Code Blocks Adventure</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./block-coding.css">
+</head>
+<body>
+    <header class="bg-primary text-white py-3">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="mb-0"><i class="fas fa-puzzle-piece"></i> Code Blocks Adventure</h1>
+                <nav>
+                    <a href="../index.html" class="btn btn-light btn-sm me-2"><i class="fas fa-home"></i></a>
+                    <a href="../code-activity/code-activity.html" class="btn btn-light btn-sm"><i class="fas fa-brain"></i> Brainy Blocks</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4">
+        <div class="row">
+            <!-- Challenge selection sidebar -->
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0 fs-5">Challenges</h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush challenges-list">
+                            <li class="list-group-item list-group-item-action active" data-category="sequencing">
+                                <i class="fas fa-list-ol me-2"></i> Sequencing
+                            </li>
+                            <li class="list-group-item list-group-item-action" data-category="loops">
+                                <i class="fas fa-redo me-2"></i> Loops
+                            </li>
+                            <li class="list-group-item list-group-item-action" data-category="logic">
+                                <i class="fas fa-code-branch me-2"></i> Logic
+                            </li>
+                            <li class="list-group-item list-group-item-action" data-category="procedures">
+                                <i class="fas fa-cubes me-2"></i> Procedures
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+                    <div class="card-header bg-success text-white">
+                        <h3 class="mb-0 fs-5">Levels</h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="list-group list-group-flush levels-list">
+                            <button class="list-group-item list-group-item-action active" data-level="1">Level 1</button>
+                            <button class="list-group-item list-group-item-action" data-level="2">Level 2</button>
+                            <button class="list-group-item list-group-item-action" data-level="3">Level 3</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main coding area -->
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+                        <h2 class="mb-0"><span id="challenge-title">Sequencing Challenge</span> - <span class="badge bg-primary">Level <span id="current-level">1</span></span></h2>
+                        <div>
+                            <button id="help-btn" class="btn btn-info btn-sm me-2">
+                                <i class="fas fa-question-circle"></i> Help
+                            </button>
+                            <button id="reset-btn" class="btn btn-secondary btn-sm">
+                                <i class="fas fa-redo"></i> Reset
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- Challenge description and visualization -->
+                        <div class="row mb-4">
+                            <div class="col-md-7">
+                                <div class="challenge-description p-3 border rounded bg-light">
+                                    <h3 id="task-title">Help the Robot Find Treasure</h3>
+                                    <p id="task-description" class="mb-3">Guide the robot through the maze to find the treasure by putting the right steps in order.</p>
+                                    <div class="goals-container">
+                                        <h5><i class="fas fa-bullseye"></i> Goal:</h5>
+                                        <p id="task-goal">Get the robot to the treasure chest using the right sequence of steps.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="challenge-visualization text-center">
+                                    <img id="challenge-image" src="./images/robot-maze.svg" alt="Challenge Visualization" class="img-fluid border rounded p-2 bg-white" style="max-height: 200px;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Block palette and workspace -->
+                        <div class="row">
+                            <!-- Block palette -->
+                            <div class="col-md-4 mb-3">
+                                <div class="card h-100">
+                                    <div class="card-header bg-primary text-white">
+                                        <h4 class="mb-0 fs-5"><i class="fas fa-cubes"></i> Blocks</h4>
+                                    </div>
+                                    <div class="card-body block-palette p-2" id="block-palette">
+                                        <!-- Blocks will be added here by JavaScript -->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Workspace -->
+                            <div class="col-md-8 mb-3">
+                                <div class="card h-100">
+                                    <div class="card-header bg-success text-white">
+                                        <h4 class="mb-0 fs-5"><i class="fas fa-code"></i> Your Program</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="workspace p-2 border rounded bg-light" id="workspace">
+                                            <!-- Blocks will be placed here by the user -->
+                                            <div id="program-start" class="program-start">
+                                                <i class="fas fa-play-circle"></i> Start
+                                            </div>
+                                            <div id="blocks-container" class="blocks-container">
+                                                <!-- User's blocks will be placed here -->
+                                            </div>
+                                            <div id="program-end" class="program-end">
+                                                <i class="fas fa-flag-checkered"></i> End
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="feedback mt-3 p-3 rounded" id="feedback">
+                                            <!-- Feedback will appear here -->
+                                            <p>Drag blocks from the left panel and drop them here to build your program!</p>
+                                        </div>
+                                        
+                                        <div class="d-flex justify-content-center mt-3">
+                                            <button id="run-btn" class="btn btn-warning me-2">
+                                                <i class="fas fa-play"></i> Run Program
+                                            </button>
+                                            <button id="check-btn" class="btn btn-success">
+                                                <i class="fas fa-check"></i> Check Solution
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Animation area -->
+                        <div class="card mt-3">
+                            <div class="card-header bg-info text-white">
+                                <h4 class="mb-0 fs-5"><i class="fas fa-tv"></i> Program Output</h4>
+                            </div>
+                            <div class="card-body p-2">
+                                <div class="animation-area p-3 border rounded" id="animation-area">
+                                    <div class="text-center text-muted">
+                                        <i class="fas fa-film fa-3x mb-2"></i>
+                                        <p>Your program's output will be shown here when you run it.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Progress tracking -->
+                        <div class="mt-3">
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-success" id="challenge-progress" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>Challenge Progress</span>
+                                <span id="progress-text">0 / 3 completed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer mt-5">
+        <div class="container text-center">
+            <p class="mb-0">© 2025 Code Blocks Adventure | Designed with <i class="fas fa-heart text-danger"></i> for creative minds</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SortableJS - for drag and drop -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <!-- Sound Management -->
+    <script src="../sounds.js"></script>
+    <script src="../sounds/soundGenerator.js"></script>
+    <script src="./sounds.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="./block-coding.js"></script>
+</body>
+</html>
