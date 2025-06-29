@@ -340,7 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const taskDescription = document.getElementById('task-description');
     const taskGoal = document.getElementById('task-goal');
     const challengeImage = document.getElementById('challenge-image');
-    const currentLevelDisplay = document.getElementById('current-level');
+    // currentLevelDisplay removed as it's no longer in the header
     const animationArea = document.getElementById('animation-area');
     const feedbackArea = document.getElementById('feedback');
     const progressBar = document.getElementById('challenge-progress');
@@ -399,6 +399,11 @@ document.addEventListener('DOMContentLoaded', () => {
         blocksContainer.innerHTML = '';
         userBlocks = [];
         
+        // Clear any existing highlighting
+        document.querySelectorAll('.block').forEach(blockEl => {
+            blockEl.classList.remove('block-correct', 'block-incorrect');
+        });
+        
         const challenge = getCurrentChallenge();
         if (!challenge) return;
         
@@ -409,10 +414,14 @@ document.addEventListener('DOMContentLoaded', () => {
         taskGoal.textContent = challenge.goal;
         challengeImage.src = challenge.image;
         challengeImage.alt = challenge.title;
-        currentLevelDisplay.textContent = currentLevel;
+        // Level number is now shown only in the sidebar
         
-        // Add blocks to palette
-        challenge.blocks.forEach(block => {
+        // Create a shuffled copy of blocks
+        let shuffledBlocks = [...challenge.blocks];
+        shuffleArray(shuffledBlocks);
+        
+        // Add blocks to palette in shuffled order
+        shuffledBlocks.forEach(block => {
             const blockElement = createBlockElement(block);
             blockPalette.appendChild(blockElement);
         });
@@ -645,6 +654,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const solution = challenge.solution;
         const isCorrect = arraysEqual(userBlocks, solution);
         
+        // First, clear any existing highlighting
+        document.querySelectorAll('#blocks-container .block').forEach(blockEl => {
+            blockEl.classList.remove('block-correct', 'block-incorrect');
+        });
+        
         if (isCorrect) {
             setFeedback('🎉 Perfect! Your solution is correct!', 'success');
             playSound('success');
@@ -668,15 +682,58 @@ document.addEventListener('DOMContentLoaded', () => {
                 feedbackArea.appendChild(nextButton);
             }
         } else {
-            setFeedback('Not quite right. Try again!', 'error');
+            // Provide more detailed feedback with hints
+            const blockElements = document.querySelectorAll('#blocks-container .block');
+            let misplacedBlocks = [];
+            
+            blockElements.forEach((blockEl, index) => {
+                const blockId = blockEl.dataset.id;
+                if (index < solution.length) {
+                    if (blockId === solution[index]) {
+                        // Block is in the correct position
+                        blockEl.classList.add('block-correct');
+                    } else {
+                        // Block is in the wrong position
+                        blockEl.classList.add('block-incorrect');
+                        
+                        // Get the text content for the hint
+                        const blockText = blockEl.textContent.trim();
+                        misplacedBlocks.push(blockText);
+                    }
+                } else {
+                    // Extra blocks that shouldn't be there
+                    blockEl.classList.add('block-incorrect');
+                }
+            });
+            
+            let feedbackMessage = 'Not quite right. Try again!';
+            if (misplacedBlocks.length > 0) {
+                // Count correct and incorrect blocks
+                const correctCount = document.querySelectorAll('.block-correct').length;
+                const incorrectCount = document.querySelectorAll('.block-incorrect').length;
+                
+                feedbackMessage += `<br><span class="hint-text">
+                    <i class="fas fa-lightbulb"></i> Hint: You have ${correctCount} block${correctCount !== 1 ? 's' : ''} in the correct position 
+                    (green outline) and ${incorrectCount} block${incorrectCount !== 1 ? 's' : ''} that need attention (red outline).
+                </span>`;
+            }
+            
+            setFeedback(feedbackMessage, 'error');
             playSound('error');
         }
     }
     
     // --- HELPER FUNCTIONS ---
     function resetWorkspace() {
+        // Clear all blocks in the workspace
         blocksContainer.innerHTML = '';
         userBlocks = [];
+        
+        // Remove any highlighting from blocks (in case there are any blocks left)
+        document.querySelectorAll('.block').forEach(blockEl => {
+            blockEl.classList.remove('block-correct', 'block-incorrect');
+        });
+        
         resetFeedback();
         resetAnimationArea();
         playSound('click');
@@ -702,17 +759,110 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function showHelp() {
-        // Simple help dialog - could be improved with a proper modal
-        alert(`Here's how to use the Block Coding tool:
-
-1. Select blocks from the left panel
-2. Drag them to your workspace or click to add them
-3. Arrange them in the correct order
-4. Click "Run Program" to see what happens
-5. Click "Check Solution" to verify your answer
-6. Use "Reset" to start over
-
-Have fun coding!`);
+        // Create and show modal for better help display
+        const helpModal = document.createElement('div');
+        helpModal.className = 'custom-modal';
+        helpModal.innerHTML = `
+            <div class="modal-content">
+                <div class="modal-header bg-info text-white">
+                    <h3>How to Use Brainy Blocks</h3>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <h4>Basic Steps:</h4>
+                    <ol>
+                        <li>Select blocks from the left panel</li>
+                        <li>Drag them to your workspace or click to add them</li>
+                        <li>Arrange them in the correct order</li>
+                        <li>Click "Run Program" to see what happens</li>
+                        <li>Click "Check Solution" to verify your answer</li>
+                        <li>Use "Reset" to start over</li>
+                    </ol>
+                    
+                    <h4>Working with Blocks:</h4>
+                    <ul>
+                        <li>Blocks can be dragged around to change their order</li>
+                        <li>Select a block and click the remove button to delete it</li>
+                        <li>When you check your solution, blocks will be highlighted:</li>
+                        <ul>
+                            <li><span style="color: #28a745; font-weight: bold;">Green pulsing</span> indicates blocks in the correct position</li>
+                            <li><span style="color: #dc3545; font-weight: bold;">Red pulsing</span> indicates blocks that need to be moved</li>
+                        </ul>
+                    </ul>
+                    
+                    <h4>Level-specific Help:</h4>
+                    <div id="level-specific-help">
+                        ${getLevelSpecificHelp()}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary close-modal-btn">Got it!</button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(helpModal);
+        
+        // Show the modal
+        setTimeout(() => {
+            helpModal.classList.add('show');
+        }, 10);
+        
+        // Handle close button
+        const closeBtn = helpModal.querySelector('.close-btn');
+        const closeModalBtn = helpModal.querySelector('.close-modal-btn');
+        
+        function closeModal() {
+            helpModal.classList.remove('show');
+            setTimeout(() => {
+                helpModal.remove();
+            }, 300);
+        }
+        
+        closeBtn.addEventListener('click', closeModal);
+        closeModalBtn.addEventListener('click', closeModal);
+        
+        // Close when clicking outside the modal content
+        helpModal.addEventListener('click', (e) => {
+            if (e.target === helpModal) {
+                closeModal();
+            }
+        });
+    }
+    
+    // Function to get level-specific help
+    function getLevelSpecificHelp() {
+        const challenge = getCurrentChallenge();
+        if (!challenge) return '';
+        
+        // Level-specific help text
+        const helpTexts = {
+            2: `
+                <h5>Make a Sandwich Help:</h5>
+                <p>Think about how you would make a sandwich in real life:</p>
+                <ol>
+                    <li>Start with a piece of bread as the base</li>
+                    <li>Add ingredients in a logical order (cheese, lettuce, tomato)</li>
+                    <li>Add the top bread to complete the sandwich</li>
+                    <li>Finally, cut the sandwich in half</li>
+                </ol>
+            `,
+            5: `
+                <h5>Help the Robot Find Treasure:</h5>
+                <p>Look closely at the maze image and follow these steps:</p>
+                <ol>
+                    <li>The robot starts at the beginning of the maze</li>
+                    <li>First move forward to enter the maze</li>
+                    <li>Turn right at the first intersection</li>
+                    <li>Move forward along the path</li>
+                    <li>Turn left when you reach the wall</li>
+                    <li>Move forward to reach the treasure</li>
+                    <li>Pick up the treasure once you reach it</li>
+                </ol>
+            `
+        };
+        
+        return helpTexts[currentLevel] || '<p>Arrange the blocks in the correct logical order to complete this challenge.</p>';
     }
     
     function updateProgress() {
@@ -735,6 +885,15 @@ Have fun coding!`);
             if (a[i] !== b[i]) return false;
         }
         return true;
+    }
+    
+    // Fisher-Yates shuffle algorithm to randomize blocks
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+        }
+        return array;
     }
     
     function playSound(type) {
