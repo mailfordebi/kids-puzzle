@@ -67,19 +67,36 @@ body {
     position: relative;
 }
 
+/* Selected block styling */
+.block-selected {
+    box-shadow: 0 0 0 3px #dc3545;
+    position: relative;
+}
+
+.block-selected::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 15px;
+    height: 15px;
+    background-color: #dc3545;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+#remove-block-btn {
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+#remove-block-btn.active {
+    opacity: 1;
+}
+
 .blocks-container {
     min-height: 200px;
     padding: 10px 0;
-}
-
-.program-start, .program-end {
-    background-color: #212529;
-    color: white;
-    padding: 8px 12px;
-    margin: 10px 0;
-    border-radius: 5px;
-    font-weight: bold;
-    display: inline-block;
 }
 
 /* Challenge visualization */

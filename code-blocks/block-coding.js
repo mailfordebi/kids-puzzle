@@ -6,19 +6,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // Challenges organized by category and level
     const challenges = {
         sequencing: {
+            // Level 1 - Morning Routine (Very basic daily sequence for ages 5-6)
             1: {
-                title: "Help the Robot Find Treasure",
-                description: "Guide the robot through the maze to find the treasure by putting the right steps in order.",
-                goal: "Get the robot to the treasure chest using the right sequence of steps.",
-                image: "./images/robot-maze.svg",
+                title: "Morning Routine",
+                description: "Put your morning activities in the right order to start the day right.",
+                goal: "Create a proper morning routine sequence.",
+                image: "./images/morning-routine.svg",
                 blocks: [
-                    { id: 'move-forward', type: 'motion', text: 'Move Forward', icon: 'arrow-up' },
-                    { id: 'turn-right', type: 'motion', text: 'Turn Right', icon: 'arrow-right' },
-                    { id: 'turn-left', type: 'motion', text: 'Turn Left', icon: 'arrow-left' },
-                    { id: 'pick-up', type: 'motion', text: 'Pick Up Treasure', icon: 'box' }
+                    { id: 'wake-up', type: 'motion', text: 'Wake Up', icon: 'bell' },
+                    { id: 'brush-teeth', type: 'motion', text: 'Brush Teeth', icon: 'tooth' },
+                    { id: 'get-dressed', type: 'motion', text: 'Get Dressed', icon: 'tshirt' },
+                    { id: 'eat-breakfast', type: 'motion', text: 'Eat Breakfast', icon: 'egg' },
+                    { id: 'pack-bag', type: 'motion', text: 'Pack Bag', icon: 'backpack' },
+                    { id: 'go-school', type: 'motion', text: 'Go to School', icon: 'school' }
                 ],
-                solution: ['move-forward', 'turn-right', 'move-forward', 'turn-left', 'move-forward', 'pick-up']
+                solution: ['wake-up', 'brush-teeth', 'get-dressed', 'eat-breakfast', 'pack-bag', 'go-school']
             },
+            // Level 2 - Make a Sandwich (Simple food preparation)
             2: {
                 title: "Make a Sandwich",
                 description: "Help make a tasty sandwich by putting the steps in the right order.",
@@ -34,7 +38,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 ],
                 solution: ['place-bread', 'add-cheese', 'add-lettuce', 'add-tomato', 'add-top-bread', 'cut-sandwich']
             },
+            // Level 3 - Build a Snowman (Simple outdoor activity)
             3: {
+                title: "Build a Snowman",
+                description: "Build a friendly snowman by ordering the steps properly.",
+                goal: "Create a perfect snowman with the correct sequence.",
+                image: "./images/snowman.svg",
+                blocks: [
+                    { id: 'roll-large-ball', type: 'motion', text: 'Roll Large Ball', icon: 'circle' },
+                    { id: 'roll-medium-ball', type: 'motion', text: 'Roll Medium Ball', icon: 'dot-circle' },
+                    { id: 'roll-small-ball', type: 'motion', text: 'Roll Small Ball', icon: 'bullseye' },
+                    { id: 'add-eyes', type: 'motion', text: 'Add Eyes', icon: 'eye' },
+                    { id: 'add-nose', type: 'motion', text: 'Add Carrot Nose', icon: 'carrot' },
+                    { id: 'add-hat', type: 'motion', text: 'Add Hat', icon: 'hat-wizard' }
+                ],
+                solution: ['roll-large-ball', 'roll-medium-ball', 'roll-small-ball', 'add-eyes', 'add-nose', 'add-hat']
+            },
+            // Level 4 - Plant a Flower (Simple nature activity)
+            4: {
                 title: "Plant a Flower",
                 description: "Help plant a beautiful flower by putting the gardening steps in order.",
                 goal: "Plant a flower by following the correct sequence of steps.",
@@ -48,6 +69,180 @@ document.addEventListener('DOMContentLoaded', () => {
                     { id: 'watch-grow', type: 'motion', text: 'Watch it Grow', icon: 'eye' }
                 ],
                 solution: ['dig-hole', 'place-seed', 'add-soil', 'water-seed', 'wait-sun', 'watch-grow']
+            },
+            // Level 5 - Help the Robot Find Treasure (Simple maze navigation)
+            5: {
+                title: "Help the Robot Find Treasure",
+                description: "Guide the robot through the maze to find the treasure by putting the right steps in order.",
+                goal: "Get the robot to the treasure chest using the right sequence of steps.",
+                image: "./images/robot-maze-improved.svg",
+                blocks: [
+                    { id: 'move-forward', type: 'motion', text: 'Move Forward', icon: 'arrow-up' },
+                    { id: 'turn-right', type: 'motion', text: 'Turn Right', icon: 'arrow-right' },
+                    { id: 'turn-left', type: 'motion', text: 'Turn Left', icon: 'arrow-left' },
+                    { id: 'pick-up', type: 'motion', text: 'Pick Up Treasure', icon: 'box' }
+                ],
+                solution: ['move-forward', 'turn-right', 'move-forward', 'turn-left', 'move-forward', 'pick-up']
+            },
+            // Level 6 - Pizza Time (More complex food preparation)
+            6: {
+                title: "Pizza Time",
+                description: "Help make a delicious pizza by putting the steps in the right order.",
+                goal: "Create a perfect pizza following the correct sequence.",
+                image: "./images/pizza-time.svg",
+                blocks: [
+                    { id: 'prepare-dough', type: 'motion', text: 'Prepare Dough', icon: 'pizza-slice' },
+                    { id: 'add-sauce', type: 'motion', text: 'Add Sauce', icon: 'mortar-pestle' },
+                    { id: 'add-cheese', type: 'motion', text: 'Add Cheese', icon: 'cheese' },
+                    { id: 'add-toppings', type: 'motion', text: 'Add Toppings', icon: 'pepper-hot' },
+                    { id: 'bake-pizza', type: 'motion', text: 'Bake Pizza', icon: 'temperature-high' },
+                    { id: 'serve-pizza', type: 'motion', text: 'Serve Pizza', icon: 'utensils' }
+                ],
+                solution: ['prepare-dough', 'add-sauce', 'add-cheese', 'add-toppings', 'bake-pizza', 'serve-pizza']
+            },
+            // Level 7 - Car Wash Sequence (Practical sequence)
+            7: {
+                title: "Car Wash Sequence",
+                description: "Run a successful car wash by putting the steps in the correct order.",
+                goal: "Clean a car following the proper sequence of steps.",
+                image: "./images/car-wash.svg",
+                blocks: [
+                    { id: 'rinse-car', type: 'motion', text: 'Rinse Car', icon: 'shower' },
+                    { id: 'apply-soap', type: 'motion', text: 'Apply Soap', icon: 'soap' },
+                    { id: 'scrub-car', type: 'motion', text: 'Scrub Car', icon: 'brush' },
+                    { id: 'rinse-again', type: 'motion', text: 'Rinse Again', icon: 'tint' },
+                    { id: 'dry-car', type: 'motion', text: 'Dry Car', icon: 'wind' },
+                    { id: 'polish-car', type: 'motion', text: 'Polish Car', icon: 'sparkles' }
+                ],
+                solution: ['rinse-car', 'apply-soap', 'scrub-car', 'rinse-again', 'dry-car', 'polish-car']
+            },
+            // Level 8 - Library Book Return (Common experience with more steps)
+            8: {
+                title: "Library Book Return",
+                description: "Return a library book by following the correct sequence of steps.",
+                goal: "Successfully return a book to the library following proper procedures.",
+                image: "./images/library-return.svg",
+                blocks: [
+                    { id: 'find-book', type: 'motion', text: 'Find Book', icon: 'search' },
+                    { id: 'check-due-date', type: 'motion', text: 'Check Due Date', icon: 'calendar' },
+                    { id: 'go-to-library', type: 'motion', text: 'Go to Library', icon: 'building' },
+                    { id: 'scan-card', type: 'motion', text: 'Scan Library Card', icon: 'id-card' },
+                    { id: 'return-book', type: 'motion', text: 'Return Book', icon: 'book' },
+                    { id: 'get-receipt', type: 'motion', text: 'Get Receipt', icon: 'receipt' }
+                ],
+                solution: ['find-book', 'check-due-date', 'go-to-library', 'scan-card', 'return-book', 'get-receipt']
+            },
+            // Level 9 - Science Experiment (More detailed process)
+            9: {
+                title: "Science Experiment",
+                description: "Conduct a baking soda and vinegar experiment by ordering the steps correctly.",
+                goal: "Create a chemical reaction with the right sequence of steps.",
+                image: "./images/science-experiment.svg",
+                blocks: [
+                    { id: 'get-supplies', type: 'motion', text: 'Get Supplies', icon: 'flask' },
+                    { id: 'add-baking-soda', type: 'motion', text: 'Add Baking Soda', icon: 'vial' },
+                    { id: 'add-food-coloring', type: 'motion', text: 'Add Food Coloring', icon: 'eye-dropper' },
+                    { id: 'add-vinegar', type: 'motion', text: 'Add Vinegar', icon: 'fill' },
+                    { id: 'observe-reaction', type: 'motion', text: 'Observe Reaction', icon: 'glasses' },
+                    { id: 'clean-up', type: 'motion', text: 'Clean Up', icon: 'broom' }
+                ],
+                solution: ['get-supplies', 'add-baking-soda', 'add-food-coloring', 'add-vinegar', 'observe-reaction', 'clean-up']
+            },
+            // Level 10 - Museum Adventure (More planning involved)
+            10: {
+                title: "Museum Adventure",
+                description: "Plan a museum visit by organizing the activities in the correct order.",
+                goal: "Have a successful museum trip with properly sequenced activities.",
+                image: "./images/museum-adventure.svg",
+                blocks: [
+                    { id: 'buy-tickets', type: 'motion', text: 'Buy Tickets', icon: 'ticket-alt' },
+                    { id: 'check-map', type: 'motion', text: 'Check Map', icon: 'map' },
+                    { id: 'visit-exhibits', type: 'motion', text: 'Visit Exhibits', icon: 'landmark' },
+                    { id: 'take-photos', type: 'motion', text: 'Take Photos', icon: 'camera' },
+                    { id: 'eat-lunch', type: 'motion', text: 'Eat Lunch', icon: 'utensils' },
+                    { id: 'visit-gift-shop', type: 'motion', text: 'Visit Gift Shop', icon: 'shopping-bag' }
+                ],
+                solution: ['buy-tickets', 'check-map', 'visit-exhibits', 'take-photos', 'eat-lunch', 'visit-gift-shop']
+            },
+            // Level 11 - Birthday Party Planning (Complex planning)
+            11: {
+                title: "Birthday Party Planning",
+                description: "Plan a birthday party by organizing the tasks in the correct order.",
+                goal: "Create a successful birthday party with properly sequenced preparation steps.",
+                image: "./images/birthday-party.svg",
+                blocks: [
+                    { id: 'create-guest-list', type: 'motion', text: 'Create Guest List', icon: 'users' },
+                    { id: 'send-invitations', type: 'motion', text: 'Send Invitations', icon: 'envelope' },
+                    { id: 'buy-decorations', type: 'motion', text: 'Buy Decorations', icon: 'birthday-cake' },
+                    { id: 'decorate-room', type: 'motion', text: 'Decorate Room', icon: 'paint-roller' },
+                    { id: 'prepare-food', type: 'motion', text: 'Prepare Food', icon: 'pizza-slice' },
+                    { id: 'welcome-guests', type: 'motion', text: 'Welcome Guests', icon: 'door-open' }
+                ],
+                solution: ['create-guest-list', 'send-invitations', 'buy-decorations', 'decorate-room', 'prepare-food', 'welcome-guests']
+            },
+            // Level 12 - Robot Treasure Hunt (Complex navigation)
+            12: {
+                title: "Robot Treasure Hunt",
+                description: "Help the advanced robot find hidden treasure through more complex movements.",
+                goal: "Guide the robot through a more challenging maze to reach the treasure.",
+                image: "./images/robot-treasure-hunt.svg",
+                blocks: [
+                    { id: 'move-forward', type: 'motion', text: 'Move Forward', icon: 'arrow-up' },
+                    { id: 'turn-right', type: 'motion', text: 'Turn Right', icon: 'arrow-right' },
+                    { id: 'turn-left', type: 'motion', text: 'Turn Left', icon: 'arrow-left' },
+                    { id: 'move-twice', type: 'motion', text: 'Move Twice', icon: 'forward' },
+                    { id: 'check-path', type: 'motion', text: 'Check Path', icon: 'search' },
+                    { id: 'pick-up', type: 'motion', text: 'Pick Up Treasure', icon: 'box' }
+                ],
+                solution: ['move-forward', 'check-path', 'turn-right', 'move-twice', 'turn-left', 'pick-up']
+            },
+            // Level 13 - Camping Adventure (Outdoor sequence with safety)
+            13: {
+                title: "Camping Adventure",
+                description: "Set up a campsite by ordering the necessary steps correctly.",
+                goal: "Create a proper campsite setup following the correct sequence of activities.",
+                image: "./images/camping-adventure.svg",
+                blocks: [
+                    { id: 'find-spot', type: 'motion', text: 'Find Camping Spot', icon: 'map-marker-alt' },
+                    { id: 'clear-area', type: 'motion', text: 'Clear Area', icon: 'broom' },
+                    { id: 'set-up-tent', type: 'motion', text: 'Set Up Tent', icon: 'campground' },
+                    { id: 'collect-wood', type: 'motion', text: 'Collect Firewood', icon: 'tree' },
+                    { id: 'build-fire', type: 'motion', text: 'Build Fire', icon: 'fire' },
+                    { id: 'cook-dinner', type: 'motion', text: 'Cook Dinner', icon: 'utensils' }
+                ],
+                solution: ['find-spot', 'clear-area', 'set-up-tent', 'collect-wood', 'build-fire', 'cook-dinner']
+            },
+            // Level 14 - Space Launch (Advanced technical sequence)
+            14: {
+                title: "Space Launch",
+                description: "Prepare and launch a rocket by putting the steps in the correct order.",
+                goal: "Successfully launch a rocket into space with the right sequence of operations.",
+                image: "./images/space-launch.svg",
+                blocks: [
+                    { id: 'systems-check', type: 'motion', text: 'Systems Check', icon: 'clipboard-check' },
+                    { id: 'fuel-rocket', type: 'motion', text: 'Fuel Rocket', icon: 'gas-pump' },
+                    { id: 'crew-boarding', type: 'motion', text: 'Crew Boarding', icon: 'users' },
+                    { id: 'countdown', type: 'motion', text: 'Countdown', icon: 'clock' },
+                    { id: 'ignition', type: 'motion', text: 'Ignition', icon: 'fire' },
+                    { id: 'liftoff', type: 'motion', text: 'Liftoff', icon: 'rocket' }
+                ],
+                solution: ['systems-check', 'fuel-rocket', 'crew-boarding', 'countdown', 'ignition', 'liftoff']
+            },
+            // Level 15 - Weather Report (Most abstract sequence)
+            15: {
+                title: "Weather Report",
+                description: "Create a weather report by organizing the meteorological steps correctly.",
+                goal: "Produce an accurate weather forecast with properly sequenced steps.",
+                image: "./images/weather-report.svg",
+                blocks: [
+                    { id: 'collect-data', type: 'motion', text: 'Collect Data', icon: 'database' },
+                    { id: 'analyze-patterns', type: 'motion', text: 'Analyze Patterns', icon: 'chart-line' },
+                    { id: 'check-satellites', type: 'motion', text: 'Check Satellites', icon: 'satellite' },
+                    { id: 'run-models', type: 'motion', text: 'Run Computer Models', icon: 'laptop-code' },
+                    { id: 'create-forecast', type: 'motion', text: 'Create Forecast', icon: 'cloud-sun' },
+                    { id: 'broadcast-report', type: 'motion', text: 'Broadcast Report', icon: 'tv' }
+                ],
+                solution: ['collect-data', 'check-satellites', 'analyze-patterns', 'run-models', 'create-forecast', 'broadcast-report']
             }
         },
         loops: {
@@ -182,12 +377,19 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('reset-btn').addEventListener('click', resetWorkspace);
         document.getElementById('help-btn').addEventListener('click', showHelp);
 
+        // Set up image modal functionality
+        document.getElementById('challenge-image').addEventListener('click', function() {
+            const modalImage = document.getElementById('modal-challenge-image');
+            modalImage.src = this.src;
+            document.getElementById('imageModalLabel').textContent = taskTitle.textContent;
+        });
+
         // Initialize first challenge
         loadChallenge();
         updateUI();
         
-        // Set up Sortable for drag-and-drop
-        setupSortable();
+        // Set up drag-and-drop functionality
+        setupDragAndDrop();
     }
 
     // --- CHALLENGE FUNCTIONS ---
@@ -291,7 +493,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resetFeedback();
     }
     
-    function setupSortable() {
+    function setupDragAndDrop() {
         // Make the block palette sortable
         new Sortable(blockPalette, {
             group: {
@@ -316,6 +518,70 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Update userBlocks array based on the current DOM order
                 userBlocks = Array.from(blocksContainer.querySelectorAll('.block')).map(el => el.dataset.id);
                 resetFeedback();
+            }
+        });
+        
+        // Set up block selection and removal
+        const removeBlockBtn = document.getElementById('remove-block-btn');
+        let selectedBlock = null;
+        
+        // Initially disable the remove button
+        removeBlockBtn.disabled = true;
+        
+        // Function to handle block selection
+        blocksContainer.addEventListener('click', function(e) {
+            const blockEl = e.target.closest('.block');
+            if (!blockEl) return;
+            
+            // Clear previous selection
+            document.querySelectorAll('.block-selected').forEach(el => {
+                el.classList.remove('block-selected');
+            });
+            
+            // Select new block
+            blockEl.classList.add('block-selected');
+            selectedBlock = blockEl;
+            
+            // Enable remove button
+            removeBlockBtn.disabled = false;
+            removeBlockBtn.classList.add('active');
+            
+            // Play sound
+            playSound('click');
+        });
+        
+        // Remove selected block when button is clicked
+        removeBlockBtn.addEventListener('click', function() {
+            if (selectedBlock) {
+                // Get block name for feedback
+                const blockName = selectedBlock.textContent.trim();
+                
+                // Remove the block
+                selectedBlock.remove();
+                selectedBlock = null;
+                
+                // Update user blocks array
+                userBlocks = Array.from(blocksContainer.querySelectorAll('.block')).map(el => el.dataset.id);
+                
+                // Play sound and show feedback
+                playSound('error');
+                setFeedback(`Removed "${blockName}" block`, 'running');
+                
+                // Disable remove button
+                removeBlockBtn.disabled = true;
+                removeBlockBtn.classList.remove('active');
+            }
+        });
+        
+        // Clear selection when clicking outside blocks
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.block') && !e.target.closest('#remove-block-btn')) {
+                document.querySelectorAll('.block-selected').forEach(el => {
+                    el.classList.remove('block-selected');
+                });
+                selectedBlock = null;
+                removeBlockBtn.disabled = true;
+                removeBlockBtn.classList.remove('active');
             }
         });
     }
