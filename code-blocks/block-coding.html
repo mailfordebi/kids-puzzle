@@ -56,21 +56,51 @@
                     </div>
                     <div class="card-body p-0">
                         <div class="list-group list-group-flush levels-list" style="max-height: 300px; overflow-y: auto;">
-                            <button class="list-group-item list-group-item-action active" data-level="1">Level 1: Morning Routine</button>
-                            <button class="list-group-item list-group-item-action" data-level="2">Level 2: Make a Sandwich</button>
-                            <button class="list-group-item list-group-item-action" data-level="3">Level 3: Build a Snowman</button>
-                            <button class="list-group-item list-group-item-action" data-level="4">Level 4: Plant a Flower</button>
-                            <button class="list-group-item list-group-item-action" data-level="5">Level 5: Robot Treasure</button>
-                            <button class="list-group-item list-group-item-action" data-level="6">Level 6: Pizza Time</button>
-                            <button class="list-group-item list-group-item-action" data-level="7">Level 7: Car Wash</button>
-                            <button class="list-group-item list-group-item-action" data-level="8">Level 8: Library Book</button>
-                            <button class="list-group-item list-group-item-action" data-level="9">Level 9: Science Experiment</button>
-                            <button class="list-group-item list-group-item-action" data-level="10">Level 10: Museum Adventure</button>
-                            <button class="list-group-item list-group-item-action" data-level="11">Level 11: Birthday Party</button>
-                            <button class="list-group-item list-group-item-action" data-level="12">Level 12: Robot Treasure Hunt</button>
-                            <button class="list-group-item list-group-item-action" data-level="13">Level 13: Camping Adventure</button>
-                            <button class="list-group-item list-group-item-action" data-level="14">Level 14: Space Launch</button>
-                            <button class="list-group-item list-group-item-action" data-level="15">Level 15: Weather Report</button>
+                            <!-- Sequencing levels will be populated dynamically based on selected category -->
+                            <div class="sequencing-levels">
+                                <button class="list-group-item list-group-item-action active" data-level="1">Level 1: Morning Routine</button>
+                                <button class="list-group-item list-group-item-action" data-level="2">Level 2: Make a Sandwich</button>
+                                <button class="list-group-item list-group-item-action" data-level="3">Level 3: Build a Snowman</button>
+                                <button class="list-group-item list-group-item-action" data-level="4">Level 4: Plant a Flower</button>
+                                <button class="list-group-item list-group-item-action" data-level="5">Level 5: Robot Treasure</button>
+                                <button class="list-group-item list-group-item-action" data-level="6">Level 6: Pizza Time</button>
+                                <button class="list-group-item list-group-item-action" data-level="7">Level 7: Car Wash</button>
+                                <button class="list-group-item list-group-item-action" data-level="8">Level 8: Library Book</button>
+                                <button class="list-group-item list-group-item-action" data-level="9">Level 9: Science Experiment</button>
+                                <button class="list-group-item list-group-item-action" data-level="10">Level 10: Museum Adventure</button>
+                                <button class="list-group-item list-group-item-action" data-level="11">Level 11: Birthday Party</button>
+                                <button class="list-group-item list-group-item-action" data-level="12">Level 12: Robot Treasure Hunt</button>
+                                <button class="list-group-item list-group-item-action" data-level="13">Level 13: Camping Adventure</button>
+                                <button class="list-group-item list-group-item-action" data-level="14">Level 14: Space Launch</button>
+                                <button class="list-group-item list-group-item-action" data-level="15">Level 15: Weather Report</button>
+                            </div>
+                            <!-- Loops levels (initially hidden) -->
+                            <div class="loops-levels" style="display: none;">
+                                <button class="list-group-item list-group-item-action" data-level="1">Level 1: Paint a Fence</button>
+                                <button class="list-group-item list-group-item-action" data-level="2">Level 2: Dance Routine</button>
+                                <button class="list-group-item list-group-item-action" data-level="3">Level 3: Draw a Square</button>
+                                <button class="list-group-item list-group-item-action" data-level="4">Level 4: Water the Garden</button>
+                                <button class="list-group-item list-group-item-action" data-level="5">Level 5: Stack the Blocks</button>
+                                <button class="list-group-item list-group-item-action" data-level="6">Level 6: Robot Path</button>
+                                <button class="list-group-item list-group-item-action" data-level="7">Level 7: Count Apples</button>
+                                <button class="list-group-item list-group-item-action" data-level="8">Level 8: Star Pattern</button>
+                                <button class="list-group-item list-group-item-action" data-level="9">Level 9: Jumping Jacks</button>
+                                <button class="list-group-item list-group-item-action" data-level="10">Level 10: Music Beats</button>
+                                <button class="list-group-item list-group-item-action" data-level="11">Level 11: Rainbow Colors</button>
+                                <button class="list-group-item list-group-item-action" data-level="12">Level 12: Pizza Toppings</button>
+                                <button class="list-group-item list-group-item-action" data-level="13">Level 13: Robot Dance</button>
+                                <button class="list-group-item list-group-item-action" data-level="14">Level 14: Spiral Drawing</button>
+                                <button class="list-group-item list-group-item-action" data-level="15">Level 15: Obstacle Course</button>
+                                <button class="list-group-item list-group-item-action" data-level="16">Level 16: Music Composition</button>
+                                <button class="list-group-item list-group-item-action" data-level="17">Level 17: Space Mission</button>
+                                <button class="list-group-item list-group-item-action" data-level="18">Level 18: Flower Garden</button>
+                                <button class="list-group-item list-group-item-action" data-level="19">Level 19: Robot Maze Challenge</button>
+                                <button class="list-group-item list-group-item-action" data-level="20">Level 20: Pixel Art</button>
+                            </div>
+                            <!-- Logic levels will go here when implemented -->
+                            <div class="logic-levels" style="display: none;"></div>
+                            <!-- Procedures levels will go here when implemented -->
+                            <div class="procedures-levels" style="display: none;"></div>
                         </div>
                     </div>
                 </div>

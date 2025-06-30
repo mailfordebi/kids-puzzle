@@ -246,9 +246,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
         loops: {
+            // Level 1 - Paint a Fence (Very basic loop for ages 5-6)
             1: {
                 title: "Paint a Fence",
-                description: "Use loops to paint all 5 fence posts without repeating the same command.",
+                description: "Use a loop to paint all 5 fence posts without repeating the same command.",
                 goal: "Paint all 5 fence posts using the fewest blocks possible.",
                 image: "./images/fence.svg",
                 blocks: [
@@ -258,6 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 solution: ['repeat-5', 'paint-post'],
                 isNested: true
             },
+            // Level 2 - Dance Routine (Simple repeated actions)
             2: {
                 title: "Dance Routine",
                 description: "Create a dance routine with 3 spins and 2 jumps using loops.",
@@ -272,17 +274,281 @@ document.addEventListener('DOMContentLoaded', () => {
                 solution: ['repeat-3', 'spin', 'repeat-2', 'jump'],
                 isNested: true
             },
+            // Level 3 - Draw a Square (Simple geometric pattern)
             3: {
                 title: "Draw a Square",
                 description: "Use loops to draw a square without repeating commands.",
                 goal: "Draw a perfect square using a loop to repeat the sides.",
-                image: "./images/fence.svg", // Replace with square image when available
+                image: "./images/square.svg",
                 blocks: [
                     { id: 'repeat-4', type: 'loop', text: 'Repeat 4 times', icon: 'redo' },
                     { id: 'draw-line', type: 'motion', text: 'Draw Line', icon: 'pen' },
                     { id: 'turn-right-90', type: 'motion', text: 'Turn Right 90°', icon: 'arrow-right' }
                 ],
                 solution: ['repeat-4', 'draw-line', 'turn-right-90'],
+                isNested: true
+            },
+            // Level 4 - Water the Garden (Simple natural sequence)
+            4: {
+                title: "Water the Garden",
+                description: "Help water 6 plants in the garden using a loop.",
+                goal: "Water all 6 plants efficiently using a loop.",
+                image: "./images/flower.svg",
+                blocks: [
+                    { id: 'repeat-6', type: 'loop', text: 'Repeat 6 times', icon: 'redo' },
+                    { id: 'water-plant', type: 'motion', text: 'Water Plant', icon: 'tint' },
+                    { id: 'move-next', type: 'motion', text: 'Move to Next Plant', icon: 'arrow-right' }
+                ],
+                solution: ['repeat-6', 'water-plant', 'move-next'],
+                isNested: true
+            },
+            // Level 5 - Stack the Blocks (Building activity)
+            5: {
+                title: "Stack the Blocks",
+                description: "Stack 8 blocks to build a tower using a loop.",
+                goal: "Build a tower by stacking 8 blocks with an efficient loop.",
+                image: "./images/stack-blocks.svg",
+                blocks: [
+                    { id: 'repeat-8', type: 'loop', text: 'Repeat 8 times', icon: 'redo' },
+                    { id: 'pick-block', type: 'motion', text: 'Pick Up Block', icon: 'cube' },
+                    { id: 'stack-block', type: 'motion', text: 'Stack Block', icon: 'arrow-up' }
+                ],
+                solution: ['repeat-8', 'pick-block', 'stack-block'],
+                isNested: true
+            },
+            // Level 6 - Robot Path (Simple maze navigation with loops)
+            6: {
+                title: "Robot Path",
+                description: "Help the robot navigate the zigzag path by using loops for repeated movements.",
+                goal: "Guide the robot to the finish point using loops to make the code more efficient.",
+                image: "./images/robot-path.svg",
+                blocks: [
+                    { id: 'repeat-3', type: 'loop', text: 'Repeat 3 times', icon: 'redo' },
+                    { id: 'move-forward', type: 'motion', text: 'Move Forward', icon: 'arrow-up' },
+                    { id: 'turn-right', type: 'motion', text: 'Turn Right', icon: 'arrow-right' },
+                    { id: 'move-forward', type: 'motion', text: 'Move Forward', icon: 'arrow-up' },
+                    { id: 'turn-left', type: 'motion', text: 'Turn Left', icon: 'arrow-left' }
+                ],
+                solution: ['repeat-3', 'move-forward', 'turn-right', 'move-forward', 'turn-left'],
+                isNested: true
+            },
+            // Level 7 - Count Apples (Counting with loops)
+            7: {
+                title: "Count Apples",
+                description: "Count 10 apples in the basket using a loop.",
+                goal: "Count all 10 apples efficiently using a loop structure.",
+                image: "./images/count-apples.svg",
+                blocks: [
+                    { id: 'repeat-10', type: 'loop', text: 'Repeat 10 times', icon: 'redo' },
+                    { id: 'pick-apple', type: 'motion', text: 'Pick Apple', icon: 'apple-alt' },
+                    { id: 'count-apple', type: 'motion', text: 'Count Apple', icon: 'plus' }
+                ],
+                solution: ['repeat-10', 'pick-apple', 'count-apple'],
+                isNested: true
+            },
+            // Level 8 - Star Pattern (Geometric pattern)
+            8: {
+                title: "Star Pattern",
+                description: "Draw a 5-pointed star using loops for repeated lines and turns.",
+                goal: "Create a perfect star with loops for efficiency.",
+                image: "./images/star-pattern.svg",
+                blocks: [
+                    { id: 'repeat-5', type: 'loop', text: 'Repeat 5 times', icon: 'redo' },
+                    { id: 'draw-line', type: 'motion', text: 'Draw Line', icon: 'pen' },
+                    { id: 'turn-right-144', type: 'motion', text: 'Turn Right 144°', icon: 'arrow-right' }
+                ],
+                solution: ['repeat-5', 'draw-line', 'turn-right-144'],
+                isNested: true
+            },
+            // Level 9 - Jumping Jacks (Exercise routine)
+            9: {
+                title: "Jumping Jacks",
+                description: "Program a fitness routine with jumping jacks using loops.",
+                goal: "Complete 12 jumping jacks using an efficient loop.",
+                image: "./images/jumping-jacks.svg",
+                blocks: [
+                    { id: 'repeat-12', type: 'loop', text: 'Repeat 12 times', icon: 'redo' },
+                    { id: 'jump-out', type: 'motion', text: 'Jump Out', icon: 'arrows-alt-h' },
+                    { id: 'jump-in', type: 'motion', text: 'Jump In', icon: 'compress' },
+                    { id: 'count', type: 'motion', text: 'Count', icon: 'plus' }
+                ],
+                solution: ['repeat-12', 'jump-out', 'jump-in', 'count'],
+                isNested: true
+            },
+            // Level 10 - Music Beats (Audio pattern)
+            10: {
+                title: "Music Beats",
+                description: "Create a drum beat pattern using loops for musical repetition.",
+                goal: "Program a rhythmic drum pattern with loops for efficiency.",
+                image: "./images/music-beats.svg",
+                blocks: [
+                    { id: 'repeat-4', type: 'loop', text: 'Repeat 4 times', icon: 'redo' },
+                    { id: 'drum-loud', type: 'motion', text: 'Loud Beat', icon: 'drum' },
+                    { id: 'repeat-2', type: 'loop', text: 'Repeat 2 times', icon: 'redo' },
+                    { id: 'drum-soft', type: 'motion', text: 'Soft Beat', icon: 'music' }
+                ],
+                solution: ['repeat-4', 'drum-loud', 'repeat-2', 'drum-soft'],
+                isNested: true
+            },
+            // Level 11 - Rainbow Colors (Art sequence)
+            11: {
+                title: "Rainbow Colors",
+                description: "Draw a rainbow by repeating the color painting process with a loop.",
+                goal: "Paint all 7 colors of the rainbow using an efficient loop.",
+                image: "./images/rainbow-colors.svg",
+                blocks: [
+                    { id: 'repeat-7', type: 'loop', text: 'Repeat 7 times', icon: 'redo' },
+                    { id: 'choose-color', type: 'motion', text: 'Choose Next Color', icon: 'palette' },
+                    { id: 'paint-arc', type: 'motion', text: 'Paint Arc', icon: 'paint-brush' }
+                ],
+                solution: ['repeat-7', 'choose-color', 'paint-arc'],
+                isNested: true
+            },
+            // Level 12 - Pizza Toppings (Food preparation)
+            12: {
+                title: "Pizza Toppings",
+                description: "Place toppings on a pizza using loops to place multiple of each type.",
+                goal: "Prepare a pizza with properly arranged toppings using loops.",
+                image: "./images/pizza-time.svg",
+                blocks: [
+                    { id: 'repeat-8', type: 'loop', text: 'Repeat 8 times', icon: 'redo' },
+                    { id: 'add-pepperoni', type: 'motion', text: 'Add Pepperoni', icon: 'circle' },
+                    { id: 'repeat-6', type: 'loop', text: 'Repeat 6 times', icon: 'redo' },
+                    { id: 'add-olive', type: 'motion', text: 'Add Olive', icon: 'dot-circle' }
+                ],
+                solution: ['repeat-8', 'add-pepperoni', 'repeat-6', 'add-olive'],
+                isNested: true
+            },
+            // Level 13 - Robot Dance (Complex dance routine)
+            13: {
+                title: "Robot Dance",
+                description: "Program a robot dance with multiple repeated moves using nested loops.",
+                goal: "Create a complex dance routine using nested loops for efficiency.",
+                image: "./images/robot-dance.svg",
+                blocks: [
+                    { id: 'repeat-3', type: 'loop', text: 'Repeat 3 times', icon: 'redo' },
+                    { id: 'spin', type: 'motion', text: 'Spin', icon: 'sync' },
+                    { id: 'repeat-2', type: 'loop', text: 'Repeat 2 times', icon: 'redo' },
+                    { id: 'jump', type: 'motion', text: 'Jump', icon: 'arrow-up' },
+                    { id: 'wave', type: 'motion', text: 'Wave Arms', icon: 'hands' }
+                ],
+                solution: ['repeat-3', 'spin', 'repeat-2', 'jump', 'wave'],
+                isNested: true
+            },
+            // Level 14 - Spiral Drawing (Complex geometric pattern)
+            14: {
+                title: "Spiral Drawing",
+                description: "Draw a spiral using loops with increasing line lengths.",
+                goal: "Create a perfect spiral using loops and varying line lengths.",
+                image: "./images/spiral.svg",
+                blocks: [
+                    { id: 'repeat-10', type: 'loop', text: 'Repeat 10 times', icon: 'redo' },
+                    { id: 'draw-line', type: 'motion', text: 'Draw Line', icon: 'pen' },
+                    { id: 'turn-right-90', type: 'motion', text: 'Turn Right 90°', icon: 'arrow-right' },
+                    { id: 'increase-length', type: 'motion', text: 'Increase Length', icon: 'arrow-up' }
+                ],
+                solution: ['repeat-10', 'draw-line', 'turn-right-90', 'increase-length'],
+                isNested: true
+            },
+            // Level 15 - Obstacle Course (Advanced navigation)
+            15: {
+                title: "Obstacle Course",
+                description: "Guide the robot through an obstacle course using nested loops for efficient navigation.",
+                goal: "Complete the obstacle course with the most efficient nested loops possible.",
+                image: "./images/robot-treasure-hunt.svg",
+                blocks: [
+                    { id: 'repeat-3', type: 'loop', text: 'Repeat 3 times', icon: 'redo' },
+                    { id: 'move-forward', type: 'motion', text: 'Move Forward', icon: 'arrow-up' },
+                    { id: 'repeat-2', type: 'loop', text: 'Repeat 2 times', icon: 'redo' },
+                    { id: 'jump-obstacle', type: 'motion', text: 'Jump Obstacle', icon: 'running' },
+                    { id: 'turn-right', type: 'motion', text: 'Turn Right', icon: 'arrow-right' },
+                    { id: 'turn-left', type: 'motion', text: 'Turn Left', icon: 'arrow-left' }
+                ],
+                solution: ['repeat-3', 'move-forward', 'repeat-2', 'jump-obstacle', 'turn-right', 'turn-left'],
+                isNested: true
+            },
+            // Level 16 - Music Composition (Advanced audio pattern)
+            16: {
+                title: "Music Composition",
+                description: "Create a complex music pattern with nested loops for different instruments.",
+                goal: "Compose a musical sequence using efficient nested loops.",
+                image: "./images/music-composition.svg",
+                blocks: [
+                    { id: 'repeat-4', type: 'loop', text: 'Repeat 4 times', icon: 'redo' },
+                    { id: 'play-drum', type: 'motion', text: 'Play Drum', icon: 'drum' },
+                    { id: 'repeat-2', type: 'loop', text: 'Repeat 2 times', icon: 'redo' },
+                    { id: 'play-piano', type: 'motion', text: 'Play Piano', icon: 'music' },
+                    { id: 'repeat-3', type: 'loop', text: 'Repeat 3 times', icon: 'redo' },
+                    { id: 'play-guitar', type: 'motion', text: 'Play Guitar', icon: 'guitar' }
+                ],
+                solution: ['repeat-4', 'play-drum', 'repeat-2', 'play-piano', 'repeat-3', 'play-guitar'],
+                isNested: true
+            },
+            // Level 17 - Space Mission (Advanced technical sequence)
+            17: {
+                title: "Space Mission",
+                description: "Program a complex space mission with multiple repeated operations using nested loops.",
+                goal: "Complete the space mission with the most efficient loop structure.",
+                image: "./images/space-launch.svg",
+                blocks: [
+                    { id: 'repeat-5', type: 'loop', text: 'Repeat 5 times', icon: 'redo' },
+                    { id: 'scan-planet', type: 'motion', text: 'Scan Planet', icon: 'search' },
+                    { id: 'repeat-3', type: 'loop', text: 'Repeat 3 times', icon: 'redo' },
+                    { id: 'collect-sample', type: 'motion', text: 'Collect Sample', icon: 'vial' },
+                    { id: 'analyze-data', type: 'motion', text: 'Analyze Data', icon: 'microscope' }
+                ],
+                solution: ['repeat-5', 'scan-planet', 'repeat-3', 'collect-sample', 'analyze-data'],
+                isNested: true
+            },
+            // Level 18 - Flower Garden (Advanced pattern)
+            18: {
+                title: "Flower Garden",
+                description: "Plant a garden with different types of flowers using nested loops for pattern creation.",
+                goal: "Create a beautiful garden pattern with efficient nested loops.",
+                image: "./images/flower.svg",
+                blocks: [
+                    { id: 'repeat-4', type: 'loop', text: 'Repeat 4 times', icon: 'redo' },
+                    { id: 'plant-rose', type: 'motion', text: 'Plant Rose', icon: 'seedling' },
+                    { id: 'repeat-3', type: 'loop', text: 'Repeat 3 times', icon: 'redo' },
+                    { id: 'plant-tulip', type: 'motion', text: 'Plant Tulip', icon: 'leaf' },
+                    { id: 'move-position', type: 'motion', text: 'Move Position', icon: 'arrows-alt' }
+                ],
+                solution: ['repeat-4', 'plant-rose', 'repeat-3', 'plant-tulip', 'move-position'],
+                isNested: true
+            },
+            // Level 19 - Robot Maze Challenge (Advanced navigation with multiple nested loops)
+            19: {
+                title: "Robot Maze Challenge",
+                description: "Navigate a complex maze using multiple nested loops for efficient movement.",
+                goal: "Guide the robot through the maze with the most efficient loop structures.",
+                image: "./images/robot-treasure-hunt.svg",
+                blocks: [
+                    { id: 'repeat-3', type: 'loop', text: 'Repeat 3 times', icon: 'redo' },
+                    { id: 'move-forward', type: 'motion', text: 'Move Forward', icon: 'arrow-up' },
+                    { id: 'turn-right', type: 'motion', text: 'Turn Right', icon: 'arrow-right' },
+                    { id: 'repeat-2', type: 'loop', text: 'Repeat 2 times', icon: 'redo' },
+                    { id: 'turn-left', type: 'motion', text: 'Turn Left', icon: 'arrow-left' },
+                    { id: 'move-twice', type: 'motion', text: 'Move Twice', icon: 'forward' },
+                    { id: 'pick-up', type: 'motion', text: 'Pick Up Treasure', icon: 'box' }
+                ],
+                solution: ['repeat-3', 'move-forward', 'turn-right', 'repeat-2', 'turn-left', 'move-twice', 'pick-up'],
+                isNested: true
+            },
+            // Level 20 - Pixel Art (Most advanced pattern)
+            20: {
+                title: "Pixel Art",
+                description: "Create a pixel art masterpiece using complex nested loops for color patterns.",
+                goal: "Draw a complete pixel image with the most efficient loop structures.",
+                image: "./images/pixel-art.svg",
+                blocks: [
+                    { id: 'repeat-8', type: 'loop', text: 'Repeat 8 times', icon: 'redo' },
+                    { id: 'change-row', type: 'motion', text: 'Change Row', icon: 'arrow-down' },
+                    { id: 'repeat-8', type: 'loop', text: 'Repeat 8 times', icon: 'redo' },
+                    { id: 'set-pixel', type: 'motion', text: 'Set Pixel', icon: 'square' },
+                    { id: 'change-column', type: 'motion', text: 'Change Column', icon: 'arrow-right' },
+                    { id: 'change-color', type: 'motion', text: 'Change Color', icon: 'palette' }
+                ],
+                solution: ['repeat-8', 'change-row', 'repeat-8', 'set-pixel', 'change-column', 'change-color'],
                 isNested: true
             }
         },
@@ -360,10 +626,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Set up level selection listeners
-        document.querySelectorAll('.levels-list .list-group-item').forEach(item => {
+        // Set up level selection listeners for all categories
+        document.querySelectorAll('.sequencing-levels .list-group-item, .loops-levels .list-group-item, .logic-levels .list-group-item, .procedures-levels .list-group-item').forEach(item => {
             item.addEventListener('click', () => {
-                document.querySelectorAll('.levels-list .list-group-item').forEach(i => i.classList.remove('active'));
+                // Only remove active class from levels in the current category
+                document.querySelectorAll(`.${currentCategory}-levels .list-group-item`).forEach(i => i.classList.remove('active'));
                 item.classList.add('active');
                 currentLevel = parseInt(item.dataset.level);
                 loadChallenge();
@@ -414,6 +681,10 @@ document.addEventListener('DOMContentLoaded', () => {
         taskGoal.textContent = challenge.goal;
         challengeImage.src = challenge.image;
         challengeImage.alt = challenge.title;
+        // Ensure the image has modal attributes
+        challengeImage.setAttribute('data-bs-toggle', 'modal');
+        challengeImage.setAttribute('data-bs-target', '#imageModal');
+        challengeImage.style.cursor = 'pointer';
         // Level number is now shown only in the sidebar
         
         // Create a shuffled copy of blocks
@@ -452,7 +723,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        document.querySelectorAll('.levels-list .list-group-item').forEach(item => {
+        // Hide all level groups first
+        document.querySelectorAll('.sequencing-levels, .loops-levels, .logic-levels, .procedures-levels').forEach(group => {
+            group.style.display = 'none';
+        });
+        
+        // Show the levels for the current category
+        const currentLevelsGroup = document.querySelector(`.${currentCategory}-levels`);
+        if (currentLevelsGroup) {
+            currentLevelsGroup.style.display = 'block';
+        }
+        
+        // Update active level within the visible category
+        document.querySelectorAll(`.${currentCategory}-levels .list-group-item`).forEach(item => {
             if (parseInt(item.dataset.level) === currentLevel) {
                 item.classList.add('active');
             } else {
@@ -652,7 +935,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!challenge) return;
         
         const solution = challenge.solution;
-        const isCorrect = arraysEqual(userBlocks, solution);
+        let isCorrect = false;
+        
+        if (challenge.isNested && currentCategory === 'loops') {
+            // For loop challenges, we need special handling to check nested blocks
+            isCorrect = checkLoopSolution(solution, userBlocks);
+        } else {
+            // For non-nested challenges, simple array comparison works
+            isCorrect = arraysEqual(userBlocks, solution);
+        }
         
         // First, clear any existing highlighting
         document.querySelectorAll('#blocks-container .block').forEach(blockEl => {
@@ -721,6 +1012,13 @@ document.addEventListener('DOMContentLoaded', () => {
             setFeedback(feedbackMessage, 'error');
             playSound('error');
         }
+    }
+    
+    // Special function to check loop-based solutions
+    function checkLoopSolution(solution, userBlocks) {
+        // For loop challenges, we still use direct array comparison for now
+        // but this function can be expanded for more complex loop validation
+        return arraysEqual(userBlocks, solution);
     }
     
     // --- HELPER FUNCTIONS ---
@@ -835,8 +1133,61 @@ document.addEventListener('DOMContentLoaded', () => {
         const challenge = getCurrentChallenge();
         if (!challenge) return '';
         
-        // Level-specific help text
-        const helpTexts = {
+        // General category help
+        if (currentCategory === 'loops') {
+            let generalLoopsHelp = `
+                <h5>Understanding Loops:</h5>
+                <p>Loops are special blocks that let you repeat actions without writing them over and over again!</p>
+                <ul>
+                    <li>A loop block (pink color) tells the computer to repeat something multiple times</li>
+                    <li>The blocks that come after the loop are the actions that will be repeated</li>
+                    <li>Loops help make your code shorter and more efficient</li>
+                </ul>
+            `;
+            
+            // Add level-specific help
+            const loopsHelpTexts = {
+                1: `
+                    <h5>Paint a Fence Help:</h5>
+                    <p>In this challenge, you need to paint 5 fence posts.</p>
+                    <ol>
+                        <li>Use the "Repeat 5 times" block to create a loop</li>
+                        <li>Add the "Paint Post" action after it</li>
+                        <li>This tells the computer: "Paint a post, then do it again 4 more times!"</li>
+                    </ol>
+                `,
+                3: `
+                    <h5>Draw a Square Help:</h5>
+                    <p>A square has 4 equal sides and 4 right angles.</p>
+                    <ol>
+                        <li>Add the "Repeat 4 times" loop block first</li>
+                        <li>Then add the "Draw Line" action</li>
+                        <li>Finally add "Turn Right 90°" to make a corner</li>
+                        <li>When repeated 4 times, this creates all four sides of a square!</li>
+                    </ol>
+                `,
+                6: `
+                    <h5>Robot Path Help:</h5>
+                    <p>The robot needs to navigate a zigzag path with repeated movements.</p>
+                    <ol>
+                        <li>Use "Repeat 3 times" to create a loop for the zigzag pattern</li>
+                        <li>Inside this loop, add these actions in order:</li>
+                        <ul>
+                            <li>Move Forward (moves horizontally)</li>
+                            <li>Turn Right (changes direction downward)</li>
+                            <li>Move Forward (moves downward)</li>
+                            <li>Turn Left (changes direction horizontally again)</li>
+                        </ul>
+                    </ol>
+                    <p>This creates a perfect zigzag pattern to reach the finish!</p>
+                `
+            };
+            
+            return generalLoopsHelp + (loopsHelpTexts[currentLevel] || '');
+        }
+        
+        // Original sequencing help text
+        const sequencingHelpTexts = {
             2: `
                 <h5>Make a Sandwich Help:</h5>
                 <p>Think about how you would make a sandwich in real life:</p>
@@ -862,7 +1213,12 @@ document.addEventListener('DOMContentLoaded', () => {
             `
         };
         
-        return helpTexts[currentLevel] || '<p>Arrange the blocks in the correct logical order to complete this challenge.</p>';
+        if (currentCategory === 'sequencing') {
+            return sequencingHelpTexts[currentLevel] || '<p>Arrange the blocks in the correct logical order to complete this challenge.</p>';
+        }
+        
+        // Default help
+        return '<p>Arrange the blocks in the correct logical order to complete this challenge.</p>';
     }
     
     function updateProgress() {
