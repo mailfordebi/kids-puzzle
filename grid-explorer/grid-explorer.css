@@ -1,0 +1,256 @@
+/* Grid Explorer CSS */
+:root {
+    --primary-color: #4361ee;
+    --success-color: #38b000;
+    --warning-color: #ffaa00;
+    --danger-color: #ef476f;
+    --info-color: #00b4d8;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+}
+
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-color: #f0f9ff;
+    color: var(--dark-color);
+    padding-bottom: 60px;
+}
+
+/* Header Styling */
+header {
+    background: linear-gradient(135deg, var(--warning-color), #ffbe0b);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.2);
+}
+
+/* Grid Explorer Styling */
+.grid-container {
+    display: grid;
+    grid-template-columns: auto repeat(7, 1fr);
+    gap: 2px;
+    max-width: 700px;
+    margin: 0 auto;
+    overflow-x: auto;
+}
+
+.grid-header {
+    display: contents;
+}
+
+.grid-corner {
+    border: none;
+    background: transparent;
+}
+
+.grid-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    height: 40px;
+    width: 40px;
+}
+
+.grid-row {
+    display: contents;
+}
+
+.grid-cell {
+    height: 40px;
+    width: 40px;
+    background-color: #f0ead6;
+    border: 1px solid #d4c8a8;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.grid-cell:hover {
+    background-color: #f8f1dc;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.grid-cell.digging {
+    animation: digging 0.3s ease;
+}
+
+.grid-cell.searched {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+}
+
+.grid-cell.searched::after {
+    content: "❌";
+    color: #999;
+}
+
+.grid-cell.correct {
+    background-color: #ffd700;
+    border: 2px solid #ff9500;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    animation: treasure-found 1s ease;
+}
+
+.grid-cell.correct::after {
+    content: "💎";
+    font-size: 1.4rem;
+}
+
+.grid-cell.hint-highlight-row {
+    background-color: rgba(255, 170, 0, 0.2);
+    animation: pulse-hint 2s infinite;
+}
+
+.grid-cell.hint-highlight-col {
+    background-color: rgba(255, 170, 0, 0.2);
+    animation: pulse-hint 2s infinite;
+}
+
+@keyframes digging {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
+@keyframes treasure-found {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@keyframes pulse-hint {
+    0% { background-color: rgba(255, 170, 0, 0.2); }
+    50% { background-color: rgba(255, 170, 0, 0.4); }
+    100% { background-color: rgba(255, 170, 0, 0.2); }
+}
+
+.treasure-hint-container {
+    font-size: 1.2rem;
+    padding: 15px;
+    background-color: #fff9c4;
+    border: 2px dashed var(--warning-color);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: inline-block;
+    min-width: 300px;
+}
+
+/* Result Messages */
+.result-message {
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px auto;
+    text-align: center;
+    font-weight: bold;
+    max-width: 80%;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.result-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 2px solid #c3e6cb;
+    opacity: 1;
+}
+
+.result-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 2px solid #f5c6cb;
+    opacity: 1;
+}
+
+.result-message.animated-feedback {
+    animation: pulse 2s;
+    opacity: 1;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.9); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.shake-effect {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-5px); }
+    40% { transform: translateX(5px); }
+    60% { transform: translateX(-3px); }
+    80% { transform: translateX(3px); }
+    100% { transform: translateX(0); }
+}
+
+/* Fun Zone Button Animation */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.rounded-pill {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #fff;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.rounded-pill:hover {
+    animation: bounce 0.8s infinite;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+}
+
+.rounded-pill i {
+    margin-right: 5px;
+    font-size: 1.1em;
+}
+
+/* Back to Brainy Blocks Button */
+.back-to-brainy-btn {
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.back-to-brainy-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(0, 180, 216, 0.7);
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .grid-cell, .grid-label {
+        height: 30px;
+        width: 30px;
+    }
+    
+    .grid-cell::after {
+        font-size: 0.9rem;
+    }
+    
+    .grid-cell.correct::after {
+        font-size: 1rem;
+    }
+}
+
+/* Footer */
+.footer {
+    background-color: #f8f9fa;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}

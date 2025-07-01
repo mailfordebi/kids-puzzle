@@ -18,7 +18,7 @@
                 <h1 class="mb-0"><i class="fas fa-puzzle-piece"></i> Code Blocks Adventure</h1>
                 <nav>
                     <a href="../index.html" class="btn btn-light btn-sm me-2"><i class="fas fa-home"></i></a>
-                    <a href="../brainy-blocks/index.html" class="btn btn-light btn-sm"><i class="fas fa-brain"></i> Brainy Blocks</a>
+                    <a href="../code-activity/code-activity.html" class="btn btn-light btn-sm"><i class="fas fa-brain"></i> Brainy Blocks</a>
                 </nav>
             </div>
         </div>
@@ -258,7 +258,7 @@
         </div>
     </footer>
 
-    <!-- Image Modal for enlarged view - Enhanced version -->
+    <!-- Image Modal for enlarged view -->
     <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
@@ -267,27 +267,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-center">
-                    <!-- Loading indicator that shows while image loads -->
-                    <div id="modal-loading" class="mb-3">
-                        <div class="spinner-border text-primary" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
-                        <p class="mt-2">Loading image...</p>
-                    </div>
-                    
-                    <!-- The actual image -->
-                    <img id="modal-challenge-image" src="" alt="Enlarged Challenge Image" class="img-fluid" 
-                         onload="document.getElementById('modal-loading').style.display = 'none'; this.style.display = 'block';"
-                         onerror="this.onerror=null; this.src='./images/image-error.svg'; document.getElementById('modal-loading').style.display = 'none'; document.getElementById('modal-error').style.display = 'block';">
-                    
-                    <!-- Fallback message if image fails to load -->
-                    <div id="modal-error" class="alert alert-danger mt-3" style="display: none;">
-                        <i class="fas fa-exclamation-triangle me-2"></i>
-                        The image could not be loaded. Please try another level or refresh the page.
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                    <img id="modal-challenge-image" src="" alt="Enlarged Challenge Image" class="img-fluid">
                 </div>
             </div>
         </div>
@@ -305,8 +285,7 @@
     <script src="./sounds.js"></script>
     <!-- Custom JavaScript -->
     <script src="./block-coding.js"></script>
-    <!-- Image and Modal Fix Scripts -->
-    <script src="./image-debugger.js"></script>
+    <!-- Modal Fix Script -->
     <script src="./fixmodal.js"></script>
 </body>
 </html>

@@ -151,6 +151,58 @@ h1 {
     font-size: 0.9rem;
 }
 
+/* Brainy Blocks submenu styles */
+.brainy-blocks-card {
+    position: relative;
+    overflow: visible;
+    cursor: default;
+}
+
+.brainy-blocks-submenu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 15px;
+    border-top: 2px dashed #ccc;
+    padding-top: 10px;
+}
+
+.submenu-item {
+    background: linear-gradient(135deg, #4361ee 0%, #3f37c9 100%);
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: block;
+    text-align: center;
+}
+
+.submenu-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+.submenu-item i {
+    margin-right: 5px;
+}
+
+/* Specific colors for each puzzle */
+.submenu-item:nth-child(1) {
+    background: linear-gradient(135deg, #38b000 0%, #2d9200 100%);
+}
+
+.submenu-item:nth-child(2) {
+    background: linear-gradient(135deg, #ffaa00 0%, #ff8800 100%);
+}
+
+.submenu-item:nth-child(3) {
+    background: linear-gradient(135deg, #00b4d8 0%, #0096c7 100%);
+}
+
 @keyframes bounce {
     0%, 100% {
         transform: translateY(0);

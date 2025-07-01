@@ -820,7 +820,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: "Space Mission",
                 description: "Control a space probe to respond to different planetary conditions.",
                 goal: "Program the probe to collect the right data based on its environment.",
-                image: "./images/space-mission.svg", // Fixed SVG path
+                image: "./images/space-mission-optimized.svg",
                 blocks: [
                     { id: 'if-rocky-surface', type: 'conditions', text: 'If Rocky Surface', icon: 'mountain' },
                     { id: 'if-liquid-water', type: 'conditions', text: 'If Liquid Water', icon: 'water' },
@@ -1027,13 +1027,100 @@ document.addEventListener('DOMContentLoaded', () => {
         challengeImage.src = challenge.image;
         challengeImage.alt = challenge.title;
         
-        // Ensure the image has modal attributes
+        // Ensure the image has modal attributes and direct click handler
         challengeImage.setAttribute('data-bs-toggle', 'modal');
         challengeImage.setAttribute('data-bs-target', '#imageModal');
         challengeImage.style.cursor = 'pointer';
         
-        // Simple preloading for better performance
-        console.log('Loading challenge image:', challenge.image);;
+        // Log image loading for debugging
+        console.log('Loading challenge image:', challenge.image);
+        
+        // Pre-load the image to check for errors
+        const imgLoader = new Image();
+        imgLoader.onload = function() {
+            console.log('Image loaded successfully:', challenge.image);
+        };
+        imgLoader.onerror = function() {
+            console.error('Error loading image:', challenge.image);
+        };
+        imgLoader.src = challenge.image;
+        
+        // Add a direct click handler with improved error handling and preloading
+        challengeImage.onclick = function() {
+            console.log('Challenge image clicked:', this.src);
+            const modalImage = document.getElementById('modal-challenge-image');
+            const imageModal = document.getElementById('imageModal');
+            const imageModalLabel = document.getElementById('imageModalLabel');
+            
+            // First set loading state
+            if (imageModalLabel) {
+                imageModalLabel.textContent = "Loading image...";
+            }
+            
+            // Preload the image to avoid freezing
+            const tempImg = new Image();
+            tempImg.onload = function() {
+                console.log('Modal image preloaded successfully');
+                
+                // Now set the actual image and show modal
+                try {
+                    modalImage.src = tempImg.src;
+                    if (imageModalLabel) {
+                        imageModalLabel.textContent = taskTitle.textContent;
+                    }
+                    
+                    // Now show the modal
+                    showModalSafely(imageModal);
+                } catch (err) {
+                    console.error('Error setting modal image:', err);
+                }
+            };
+            
+            tempImg.onerror = function() {
+                console.error('Failed to load modal image:', this.src);
+                modalImage.src = '';
+                if (imageModalLabel) {
+                    imageModalLabel.textContent = "Image failed to load";
+                }
+                
+                // Still show the modal with error message
+                showModalSafely(imageModal);
+            };
+            
+            // Start loading
+            tempImg.src = this.src;
+            
+            // Function to safely show the modal
+            function showModalSafely(modal) {
+                try {
+                    // Try to use the Bootstrap modal API
+                    const bootstrapModal = new bootstrap.Modal(modal);
+                    bootstrapModal.show();
+                } catch (err) {
+                    console.warn('Bootstrap modal failed, using fallback:', err);
+                    // Improved fallback with backdrop and close button functionality
+                    modal.style.display = 'block';
+                    modal.classList.add('show');
+                    
+                    // Add backdrop if it doesn't exist
+                    let backdrop = document.querySelector('.modal-backdrop');
+                    if (!backdrop) {
+                        backdrop = document.createElement('div');
+                        backdrop.classList.add('modal-backdrop', 'fade', 'show');
+                        document.body.appendChild(backdrop);
+                    }
+                    
+                    // Ensure close button works
+                    const closeButton = modal.querySelector('.btn-close');
+                    if (closeButton) {
+                        closeButton.onclick = function() {
+                            modal.style.display = 'none';
+                            modal.classList.remove('show');
+                            if (backdrop) backdrop.remove();
+                        };
+                    }
+                }
+            }            // Note: Modal will be shown after image loads via the showModalSafely function;
         // Level number is now shown only in the sidebar
         
         // Create a shuffled copy of blocks
