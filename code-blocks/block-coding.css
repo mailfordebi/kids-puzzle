@@ -68,6 +68,37 @@ body {
     border: 2px solid #e67e00;
 }
 
+.block-procedure {
+    background-color: #8338ec;
+    border: 2px solid #7209b7;
+}
+
+/* More colorful blocks for procedure challenges */
+.block-define {
+    background-color: #3a0ca3;
+    border: 2px solid #240046;
+}
+
+.block-action {
+    background-color: #4cc9f0;
+    border: 2px solid #4361ee;
+}
+
+.block-call {
+    background-color: #f72585;
+    border: 2px solid #b5179e;
+}
+
+.block-sensor {
+    background-color: #4d908e;
+    border: 2px solid #277da1;
+}
+
+.block-control {
+    background-color: #f9c74f;
+    border: 2px solid #f3722c;
+}
+
 /* Block hint indicators */
 .block-correct {
     border: 4px solid #28a745 !important;

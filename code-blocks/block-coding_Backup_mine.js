@@ -899,12 +899,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 image: "./images/robot-dance.svg",
                 hint: "First, place the 'Define: Dance Move' block in your workspace. Then add steps like 'Step Right', 'Step Left', etc. inside it. Finally, add the 'Run: Dance Move' block to use your procedure.",
                 blocks: [
-                    { id: 'define-dance', type: 'define', text: 'Define: Dance Move', icon: 'cube' },
-                    { id: 'step-right', type: 'action', text: 'Step Right', icon: 'arrow-right' },
-                    { id: 'step-left', type: 'action', text: 'Step Left', icon: 'arrow-left' },
-                    { id: 'spin', type: 'action', text: 'Spin', icon: 'sync' },
-                    { id: 'jump', type: 'action', text: 'Jump', icon: 'angle-double-up' },
-                    { id: 'call-dance', type: 'call', text: 'Run: Dance Move', icon: 'play' }
+                    { id: 'define-dance', type: 'procedure', text: 'Define: Dance Move', icon: 'cube' },
+                    { id: 'step-right', type: 'motion', text: 'Step Right', icon: 'arrow-right' },
+                    { id: 'step-left', type: 'motion', text: 'Step Left', icon: 'arrow-left' },
+                    { id: 'spin', type: 'motion', text: 'Spin', icon: 'sync' },
+                    { id: 'jump', type: 'motion', text: 'Jump', icon: 'angle-double-up' },
+                    { id: 'call-dance', type: 'procedure', text: 'Run: Dance Move', icon: 'play' }
                 ],
                 solution: ['define-dance', 'step-right', 'step-left', 'spin', 'jump', 'call-dance'],
                 isNested: true
@@ -918,10 +918,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 image: "./images/square.svg",
                 hint: "A square has 4 equal sides. First add the 'Define: Draw Square' block, then put 4 sets of 'Move Forward' followed by 'Turn Right' blocks inside to create a square.",
                 blocks: [
-                    { id: 'define-square', type: 'define', text: 'Define: Draw Square', icon: 'cube' },
-                    { id: 'move-forward', type: 'action', text: 'Move Forward', icon: 'arrow-up' },
-                    { id: 'turn-right', type: 'action', text: 'Turn Right', icon: 'redo' },
-                    { id: 'call-square', type: 'call', text: 'Run: Draw Square', icon: 'play' }
+                    { id: 'define-square', type: 'procedure', text: 'Define: Draw Square', icon: 'cube' },
+                    { id: 'move-forward', type: 'motion', text: 'Move Forward', icon: 'arrow-up' },
+                    { id: 'turn-right', type: 'motion', text: 'Turn Right', icon: 'redo' },
+                    { id: 'call-square', type: 'procedure', text: 'Run: Draw Square', icon: 'play' }
                 ],
                 solution: ['define-square', 'move-forward', 'turn-right', 'move-forward', 'turn-right', 'move-forward', 'turn-right', 'move-forward', 'turn-right', 'call-square'],
                 isNested: true
@@ -935,12 +935,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 image: "./images/morning-routine.svg",
                 hint: "First add the 'Define: Morning Routine' block, then add all the steps you do in the morning like brushing teeth and getting dressed. Finally, add the 'Run: Morning Routine' block.",
                 blocks: [
-                    { id: 'define-morning', type: 'define', text: 'Define: Morning Routine', icon: 'cube' },
-                    { id: 'wake-up', type: 'action', text: 'Wake Up', icon: 'bell' },
-                    { id: 'brush-teeth', type: 'action', text: 'Brush Teeth', icon: 'tooth' },
-                    { id: 'get-dressed', type: 'action', text: 'Get Dressed', icon: 'tshirt' },
-                    { id: 'eat-breakfast', type: 'action', text: 'Eat Breakfast', icon: 'utensils' },
-                    { id: 'call-morning', type: 'call', text: 'Run: Morning Routine', icon: 'play' }
+                    { id: 'define-morning', type: 'procedure', text: 'Define: Morning Routine', icon: 'cube' },
+                    { id: 'wake-up', type: 'motion', text: 'Wake Up', icon: 'bell' },
+                    { id: 'brush-teeth', type: 'motion', text: 'Brush Teeth', icon: 'tooth' },
+                    { id: 'get-dressed', type: 'motion', text: 'Get Dressed', icon: 'tshirt' },
+                    { id: 'eat-breakfast', type: 'motion', text: 'Eat Breakfast', icon: 'utensils' },
+                    { id: 'call-morning', type: 'procedure', text: 'Run: Morning Routine', icon: 'play' }
                 ],
                 solution: ['define-morning', 'wake-up', 'brush-teeth', 'get-dressed', 'eat-breakfast', 'call-morning'],
                 isNested: true
@@ -954,12 +954,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 image: "./images/sandwich.svg",
                 hint: "Start with 'Define: Make Sandwich' block. Then add all ingredients in order - bread first, then fillings, and finally top bread. Don't forget to add 'Run: Make Sandwich' at the end!",
                 blocks: [
-                    { id: 'define-sandwich', type: 'define', text: 'Define: Make Sandwich', icon: 'cube' },
-                    { id: 'get-bread', type: 'action', text: 'Get Bread Slice', icon: 'bread-slice' },
-                    { id: 'add-cheese', type: 'action', text: 'Add Cheese', icon: 'cheese' },
-                    { id: 'add-lettuce', type: 'action', text: 'Add Lettuce', icon: 'leaf' },
-                    { id: 'top-bread', type: 'action', text: 'Add Top Bread', icon: 'bread-slice' },
-                    { id: 'call-sandwich', type: 'call', text: 'Run: Make Sandwich', icon: 'play' }
+                    { id: 'define-sandwich', type: 'procedure', text: 'Define: Make Sandwich', icon: 'cube' },
+                    { id: 'get-bread', type: 'motion', text: 'Get Bread Slice', icon: 'bread-slice' },
+                    { id: 'add-cheese', type: 'motion', text: 'Add Cheese', icon: 'cheese' },
+                    { id: 'add-lettuce', type: 'motion', text: 'Add Lettuce', icon: 'leaf' },
+                    { id: 'top-bread', type: 'motion', text: 'Add Top Bread', icon: 'bread-slice' },
+                    { id: 'call-sandwich', type: 'procedure', text: 'Run: Make Sandwich', icon: 'play' }
                 ],
                 solution: ['define-sandwich', 'get-bread', 'add-cheese', 'add-lettuce', 'top-bread', 'call-sandwich'],
                 isNested: true
@@ -973,11 +973,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 image: "./images/robot-path.svg",
                 hint: "Create a 'Define: Navigate Path' procedure with the correct sequence of movements. Make sure to include forward, right turn, and left turn commands in the right order.",
                 blocks: [
-                    { id: 'define-path', type: 'define', text: 'Define: Navigate Path', icon: 'cube' },
-                    { id: 'move-forward', type: 'action', text: 'Move Forward', icon: 'arrow-up' },
-                    { id: 'turn-right', type: 'action', text: 'Turn Right', icon: 'redo' },
-                    { id: 'turn-left', type: 'action', text: 'Turn Left', icon: 'undo' },
-                    { id: 'call-path', type: 'call', text: 'Run: Navigate Path', icon: 'play' }
+                    { id: 'define-path', type: 'procedure', text: 'Define: Navigate Path', icon: 'cube' },
+                    { id: 'move-forward', type: 'motion', text: 'Move Forward', icon: 'arrow-up' },
+                    { id: 'turn-right', type: 'motion', text: 'Turn Right', icon: 'redo' },
+                    { id: 'turn-left', type: 'motion', text: 'Turn Left', icon: 'undo' },
+                    { id: 'call-path', type: 'procedure', text: 'Run: Navigate Path', icon: 'play' }
                 ],
                 solution: ['define-path', 'move-forward', 'turn-right', 'move-forward', 'turn-left', 'move-forward', 'call-path'],
                 isNested: true
@@ -991,12 +991,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 image: "./images/plant-care.svg",
                 hint: "First add 'Define: Plant Care' block, then include all the steps to care for a plant like checking soil, watering, and placing in sunlight. End with 'Run: Plant Care'.",
                 blocks: [
-                    { id: 'define-plant', type: 'define', text: 'Define: Plant Care', icon: 'cube' },
-                    { id: 'check-soil', type: 'sensor', text: 'Check Soil', icon: 'search' },
-                    { id: 'add-water', type: 'action', text: 'Add Water', icon: 'tint' },
-                    { id: 'place-sunlight', type: 'action', text: 'Place in Sunlight', icon: 'sun' },
-                    { id: 'remove-leaves', type: 'action', text: 'Remove Dead Leaves', icon: 'cut' },
-                    { id: 'call-plant', type: 'call', text: 'Run: Plant Care', icon: 'play' }
+                    { id: 'define-plant', type: 'procedure', text: 'Define: Plant Care', icon: 'cube' },
+                    { id: 'check-soil', type: 'motion', text: 'Check Soil', icon: 'search' },
+                    { id: 'add-water', type: 'motion', text: 'Add Water', icon: 'tint' },
+                    { id: 'place-sunlight', type: 'motion', text: 'Place in Sunlight', icon: 'sun' },
+                    { id: 'remove-leaves', type: 'motion', text: 'Remove Dead Leaves', icon: 'cut' },
+                    { id: 'call-plant', type: 'procedure', text: 'Run: Plant Care', icon: 'play' }
                 ],
                 solution: ['define-plant', 'check-soil', 'add-water', 'place-sunlight', 'remove-leaves', 'call-plant'],
                 isNested: true
@@ -1010,12 +1010,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 image: "./images/weather-report.svg",
                 hint: "Create a 'Define: Weather Report' procedure that includes checking temperature, looking outside, and reporting the forecast. Make sure to follow all steps a meteorologist would take!",
                 blocks: [
-                    { id: 'define-weather', type: 'define', text: 'Define: Weather Report', icon: 'cube' },
-                    { id: 'check-temp', type: 'sensor', text: 'Check Temperature', icon: 'thermometer-half' },
-                    { id: 'look-outside', type: 'sensor', text: 'Look Outside', icon: 'eye' },
-                    { id: 'check-clouds', type: 'sensor', text: 'Check for Clouds', icon: 'cloud' },
-                    { id: 'announce-forecast', type: 'action', text: 'Announce Forecast', icon: 'microphone' },
-                    { id: 'call-weather', type: 'call', text: 'Run: Weather Report', icon: 'play' }
+                    { id: 'define-weather', type: 'procedure', text: 'Define: Weather Report', icon: 'cube' },
+                    { id: 'check-temp', type: 'motion', text: 'Check Temperature', icon: 'thermometer-half' },
+                    { id: 'look-outside', type: 'motion', text: 'Look Outside', icon: 'eye' },
+                    { id: 'check-clouds', type: 'motion', text: 'Check for Clouds', icon: 'cloud' },
+                    { id: 'announce-forecast', type: 'motion', text: 'Announce Forecast', icon: 'microphone' },
+                    { id: 'call-weather', type: 'procedure', text: 'Run: Weather Report', icon: 'play' }
                 ],
                 solution: ['define-weather', 'check-temp', 'look-outside', 'check-clouds', 'announce-forecast', 'call-weather'],
                 isNested: true
@@ -1029,13 +1029,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 image: "./images/car-wash.svg",
                 hint: "Your 'Define: Car Wash' procedure should include all steps from rinsing to drying. Make sure you get the car really clean by following all steps in the right order!",
                 blocks: [
-                    { id: 'define-carwash', type: 'define', text: 'Define: Car Wash', icon: 'cube' },
-                    { id: 'rinse-car', type: 'action', text: 'Rinse Car', icon: 'shower' },
-                    { id: 'apply-soap', type: 'action', text: 'Apply Soap', icon: 'soap' },
-                    { id: 'scrub-car', type: 'action', text: 'Scrub Car', icon: 'brush' },
-                    { id: 'rinse-again', type: 'action', text: 'Rinse Again', icon: 'tint' },
-                    { id: 'dry-car', type: 'action', text: 'Dry Car', icon: 'wind' },
-                    { id: 'call-carwash', type: 'call', text: 'Run: Car Wash', icon: 'play' }
+                    { id: 'define-carwash', type: 'procedure', text: 'Define: Car Wash', icon: 'cube' },
+                    { id: 'rinse-car', type: 'motion', text: 'Rinse Car', icon: 'shower' },
+                    { id: 'apply-soap', type: 'motion', text: 'Apply Soap', icon: 'soap' },
+                    { id: 'scrub-car', type: 'motion', text: 'Scrub Car', icon: 'brush' },
+                    { id: 'rinse-again', type: 'motion', text: 'Rinse Again', icon: 'tint' },
+                    { id: 'dry-car', type: 'motion', text: 'Dry Car', icon: 'wind' },
+                    { id: 'call-carwash', type: 'procedure', text: 'Run: Car Wash', icon: 'play' }
                 ],
                 solution: ['define-carwash', 'rinse-car', 'apply-soap', 'scrub-car', 'rinse-again', 'dry-car', 'call-carwash'],
                 isNested: true
@@ -1049,11 +1049,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 image: "./images/star-pattern.svg",
                 hint: "A star has 5 points. Create a 'Define: Draw Star' procedure with the right pattern of moves and turns. You'll need to move forward and turn at just the right angles.",
                 blocks: [
-                    { id: 'define-star', type: 'define', text: 'Define: Draw Star', icon: 'cube' },
-                    { id: 'move-forward', type: 'action', text: 'Move Forward', icon: 'arrow-up' },
-                    { id: 'turn-right', type: 'action', text: 'Turn Right', icon: 'redo' },
-                    { id: 'turn-left', type: 'action', text: 'Turn Left', icon: 'undo' },
-                    { id: 'call-star', type: 'call', text: 'Run: Draw Star', icon: 'play' }
+                    { id: 'define-star', type: 'procedure', text: 'Define: Draw Star', icon: 'cube' },
+                    { id: 'move-forward', type: 'motion', text: 'Move Forward', icon: 'arrow-up' },
+                    { id: 'turn-right', type: 'motion', text: 'Turn Right', icon: 'redo' },
+                    { id: 'turn-left', type: 'motion', text: 'Turn Left', icon: 'undo' },
+                    { id: 'call-star', type: 'procedure', text: 'Run: Draw Star', icon: 'play' }
                 ],
                 solution: ['define-star', 'move-forward', 'turn-right', 'move-forward', 'turn-right', 'move-forward', 'turn-left', 'move-forward', 'turn-left', 'move-forward', 'turn-right', 'move-forward', 'turn-right', 'move-forward', 'turn-left', 'move-forward', 'call-star'],
                 isNested: true
@@ -1067,14 +1067,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 image: "./images/science-experiment.svg",
                 hint: "Scientists follow careful procedures! Create a 'Define: Science Experiment' procedure with all the steps from hypothesis to conclusion. Make sure you follow the scientific method.",
                 blocks: [
-                    { id: 'define-science', type: 'define', text: 'Define: Science Experiment', icon: 'cube' },
-                    { id: 'question', type: 'sensor', text: 'Ask Question', icon: 'question' },
-                    { id: 'hypothesis', type: 'control', text: 'Form Hypothesis', icon: 'lightbulb' },
-                    { id: 'gather-materials', type: 'action', text: 'Gather Materials', icon: 'toolbox' },
-                    { id: 'test', type: 'action', text: 'Test Hypothesis', icon: 'vial' },
-                    { id: 'analyze', type: 'control', text: 'Analyze Results', icon: 'chart-bar' },
-                    { id: 'conclude', type: 'control', text: 'Make Conclusion', icon: 'check-circle' },
-                    { id: 'call-science', type: 'call', text: 'Run: Science Experiment', icon: 'play' }
+                    { id: 'define-science', type: 'procedure', text: 'Define: Science Experiment', icon: 'cube' },
+                    { id: 'question', type: 'motion', text: 'Ask Question', icon: 'question' },
+                    { id: 'hypothesis', type: 'motion', text: 'Form Hypothesis', icon: 'lightbulb' },
+                    { id: 'gather-materials', type: 'motion', text: 'Gather Materials', icon: 'toolbox' },
+                    { id: 'test', type: 'motion', text: 'Test Hypothesis', icon: 'vial' },
+                    { id: 'analyze', type: 'motion', text: 'Analyze Results', icon: 'chart-bar' },
+                    { id: 'conclude', type: 'motion', text: 'Make Conclusion', icon: 'check-circle' },
+                    { id: 'call-science', type: 'procedure', text: 'Run: Science Experiment', icon: 'play' }
                 ],
                 solution: ['define-science', 'question', 'hypothesis', 'gather-materials', 'test', 'analyze', 'conclude', 'call-science'],
                 isNested: true
@@ -1088,14 +1088,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 image: "./images/music-composition.svg",
                 hint: "Musicians follow procedures too! Create a 'Define: Compose Music' procedure with steps like choosing instruments, setting tempo, and writing notes. Then add the 'Run: Compose Music' block to hear your creation!",
                 blocks: [
-                    { id: 'define-music', type: 'define', text: 'Define: Compose Music', icon: 'cube' },
-                    { id: 'choose-instrument', type: 'control', text: 'Choose Instrument', icon: 'guitar' },
-                    { id: 'set-tempo', type: 'control', text: 'Set Tempo', icon: 'clock' },
-                    { id: 'write-notes', type: 'action', text: 'Write Notes', icon: 'music' },
-                    { id: 'add-rhythm', type: 'action', text: 'Add Rhythm', icon: 'drum' },
-                    { id: 'practice', type: 'action', text: 'Practice Playing', icon: 'play' },
-                    { id: 'perform', type: 'action', text: 'Perform Song', icon: 'microphone' },
-                    { id: 'call-music', type: 'call', text: 'Run: Compose Music', icon: 'play' }
+                    { id: 'define-music', type: 'procedure', text: 'Define: Compose Music', icon: 'cube' },
+                    { id: 'choose-instrument', type: 'motion', text: 'Choose Instrument', icon: 'guitar' },
+                    { id: 'set-tempo', type: 'motion', text: 'Set Tempo', icon: 'clock' },
+                    { id: 'write-notes', type: 'motion', text: 'Write Notes', icon: 'music' },
+                    { id: 'add-rhythm', type: 'motion', text: 'Add Rhythm', icon: 'drum' },
+                    { id: 'practice', type: 'motion', text: 'Practice Playing', icon: 'play' },
+                    { id: 'perform', type: 'motion', text: 'Perform Song', icon: 'microphone' },
+                    { id: 'call-music', type: 'procedure', text: 'Run: Compose Music', icon: 'play' }
                 ],
                 solution: ['define-music', 'choose-instrument', 'set-tempo', 'write-notes', 'add-rhythm', 'practice', 'perform', 'call-music'],
                 isNested: true
@@ -1109,18 +1109,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 image: "./images/robot-treasure-hunt.svg",
                 hint: "This is tricky! You need to create THREE procedures: 'Define: Search Area' for looking around, 'Define: Dig For Treasure' for digging, and 'Define: Treasure Hunt' that uses both of the other procedures.",
                 blocks: [
-                    { id: 'define-search', type: 'define', text: 'Define: Search Area', icon: 'cube' },
-                    { id: 'scan-ground', type: 'sensor', text: 'Scan Ground', icon: 'search' },
-                    { id: 'mark-spot', type: 'action', text: 'Mark Spot', icon: 'map-marker' },
-                    { id: 'define-dig', type: 'define', text: 'Define: Dig For Treasure', icon: 'cube' },
-                    { id: 'get-shovel', type: 'action', text: 'Get Shovel', icon: 'toolbox' },
-                    { id: 'dig-hole', type: 'action', text: 'Dig Hole', icon: 'hands' },
-                    { id: 'find-chest', type: 'action', text: 'Find Chest', icon: 'box' },
-                    { id: 'define-hunt', type: 'define', text: 'Define: Treasure Hunt', icon: 'cube' },
-                    { id: 'call-search', type: 'call', text: 'Run: Search Area', icon: 'play' },
-                    { id: 'call-dig', type: 'call', text: 'Run: Dig For Treasure', icon: 'play' },
-                    { id: 'celebrate', type: 'action', text: 'Celebrate', icon: 'trophy' },
-                    { id: 'call-hunt', type: 'call', text: 'Run: Treasure Hunt', icon: 'play' }
+                    { id: 'define-search', type: 'procedure', text: 'Define: Search Area', icon: 'cube' },
+                    { id: 'scan-ground', type: 'motion', text: 'Scan Ground', icon: 'search' },
+                    { id: 'mark-spot', type: 'motion', text: 'Mark Spot', icon: 'map-marker' },
+                    { id: 'define-dig', type: 'procedure', text: 'Define: Dig For Treasure', icon: 'cube' },
+                    { id: 'get-shovel', type: 'motion', text: 'Get Shovel', icon: 'toolbox' },
+                    { id: 'dig-hole', type: 'motion', text: 'Dig Hole', icon: 'hands' },
+                    { id: 'find-chest', type: 'motion', text: 'Find Chest', icon: 'box' },
+                    { id: 'define-hunt', type: 'procedure', text: 'Define: Treasure Hunt', icon: 'cube' },
+                    { id: 'call-search', type: 'procedure', text: 'Run: Search Area', icon: 'play' },
+                    { id: 'call-dig', type: 'procedure', text: 'Run: Dig For Treasure', icon: 'play' },
+                    { id: 'celebrate', type: 'motion', text: 'Celebrate', icon: 'trophy' },
+                    { id: 'call-hunt', type: 'procedure', text: 'Run: Treasure Hunt', icon: 'play' }
                 ],
                 solution: ['define-search', 'scan-ground', 'mark-spot', 'define-dig', 'get-shovel', 'dig-hole', 'find-chest', 'define-hunt', 'call-search', 'call-dig', 'celebrate', 'call-hunt'],
                 isNested: true
@@ -1134,26 +1134,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 image: "./images/space-mission.svg",
                 hint: "Space missions need careful procedures! Create procedures for 'Define: Launch Rocket', 'Define: Orbit Earth', and 'Define: Land Safely'. Then make a 'Define: Mission Control' procedure that uses all three in order.",
                 blocks: [
-                    { id: 'define-launch', type: 'define', text: 'Define: Launch Rocket', icon: 'cube' },
-                    { id: 'fuel-rocket', type: 'action', text: 'Fuel Rocket', icon: 'gas-pump' },
-                    { id: 'countdown', type: 'control', text: 'Countdown', icon: 'stopwatch' },
-                    { id: 'ignite', type: 'action', text: 'Ignite Engines', icon: 'fire' },
+                    { id: 'define-launch', type: 'procedure', text: 'Define: Launch Rocket', icon: 'cube' },
+                    { id: 'fuel-rocket', type: 'motion', text: 'Fuel Rocket', icon: 'gas-pump' },
+                    { id: 'countdown', type: 'motion', text: 'Countdown', icon: 'stopwatch' },
+                    { id: 'ignite', type: 'motion', text: 'Ignite Engines', icon: 'fire' },
                     
-                    { id: 'define-orbit', type: 'define', text: 'Define: Orbit Earth', icon: 'cube' },
-                    { id: 'reach-space', type: 'action', text: 'Reach Space', icon: 'rocket' },
-                    { id: 'deploy-panels', type: 'action', text: 'Deploy Solar Panels', icon: 'solar-panel' },
-                    { id: 'take-photos', type: 'action', text: 'Take Photos', icon: 'camera' },
+                    { id: 'define-orbit', type: 'procedure', text: 'Define: Orbit Earth', icon: 'cube' },
+                    { id: 'reach-space', type: 'motion', text: 'Reach Space', icon: 'rocket' },
+                    { id: 'deploy-panels', type: 'motion', text: 'Deploy Solar Panels', icon: 'solar-panel' },
+                    { id: 'take-photos', type: 'motion', text: 'Take Photos', icon: 'camera' },
                     
-                    { id: 'define-land', type: 'define', text: 'Define: Land Safely', icon: 'cube' },
-                    { id: 'reentry', type: 'action', text: 'Reentry Sequence', icon: 'arrow-down' },
-                    { id: 'deploy-chutes', type: 'action', text: 'Deploy Parachutes', icon: 'parachute-box' },
-                    { id: 'touchdown', type: 'action', text: 'Touchdown', icon: 'check' },
+                    { id: 'define-land', type: 'procedure', text: 'Define: Land Safely', icon: 'cube' },
+                    { id: 'reentry', type: 'motion', text: 'Reentry Sequence', icon: 'arrow-down' },
+                    { id: 'deploy-chutes', type: 'motion', text: 'Deploy Parachutes', icon: 'parachute-box' },
+                    { id: 'touchdown', type: 'motion', text: 'Touchdown', icon: 'check' },
                     
-                    { id: 'define-mission', type: 'define', text: 'Define: Mission Control', icon: 'cube' },
-                    { id: 'call-launch', type: 'call', text: 'Run: Launch Rocket', icon: 'play' },
-                    { id: 'call-orbit', type: 'call', text: 'Run: Orbit Earth', icon: 'play' },
-                    { id: 'call-land', type: 'call', text: 'Run: Land Safely', icon: 'play' },
-                    { id: 'call-mission', type: 'call', text: 'Run: Mission Control', icon: 'play' }
+                    { id: 'define-mission', type: 'procedure', text: 'Define: Mission Control', icon: 'cube' },
+                    { id: 'call-launch', type: 'procedure', text: 'Run: Launch Rocket', icon: 'play' },
+                    { id: 'call-orbit', type: 'procedure', text: 'Run: Orbit Earth', icon: 'play' },
+                    { id: 'call-land', type: 'procedure', text: 'Run: Land Safely', icon: 'play' },
+                    { id: 'call-mission', type: 'procedure', text: 'Run: Mission Control', icon: 'play' }
                 ],
                 solution: ['define-launch', 'fuel-rocket', 'countdown', 'ignite', 'define-orbit', 'reach-space', 'deploy-panels', 'take-photos', 'define-land', 'reentry', 'deploy-chutes', 'touchdown', 'define-mission', 'call-launch', 'call-orbit', 'call-land', 'call-mission'],
                 isNested: true
@@ -1167,26 +1167,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 image: "./images/smart-home.svg",
                 hint: "Smart homes need procedures for different times of day. Create 'Define: Morning Mode', 'Define: Day Mode', and 'Define: Night Mode' procedures. Then create a 'Define: Smart Home' procedure that can call any of them.",
                 blocks: [
-                    { id: 'define-morning', type: 'define', text: 'Define: Morning Mode', icon: 'cube' },
-                    { id: 'lights-on', type: 'action', text: 'Turn On Lights', icon: 'lightbulb' },
-                    { id: 'heat-on', type: 'action', text: 'Turn On Heat', icon: 'temperature-high' },
-                    { id: 'play-news', type: 'action', text: 'Play News', icon: 'newspaper' },
+                    { id: 'define-morning', type: 'procedure', text: 'Define: Morning Mode', icon: 'cube' },
+                    { id: 'lights-on', type: 'motion', text: 'Turn On Lights', icon: 'lightbulb' },
+                    { id: 'heat-on', type: 'motion', text: 'Turn On Heat', icon: 'temperature-high' },
+                    { id: 'play-news', type: 'motion', text: 'Play News', icon: 'newspaper' },
                     
-                    { id: 'define-day', type: 'define', text: 'Define: Day Mode', icon: 'cube' },
-                    { id: 'lights-off', type: 'action', text: 'Turn Off Lights', icon: 'power-off' },
-                    { id: 'temp-medium', type: 'control', text: 'Set Medium Temperature', icon: 'thermometer-half' },
-                    { id: 'security-on', type: 'action', text: 'Turn On Security', icon: 'shield-alt' },
+                    { id: 'define-day', type: 'procedure', text: 'Define: Day Mode', icon: 'cube' },
+                    { id: 'lights-off', type: 'motion', text: 'Turn Off Lights', icon: 'power-off' },
+                    { id: 'temp-medium', type: 'motion', text: 'Set Medium Temperature', icon: 'thermometer-half' },
+                    { id: 'security-on', type: 'motion', text: 'Turn On Security', icon: 'shield-alt' },
                     
-                    { id: 'define-night', type: 'define', text: 'Define: Night Mode', icon: 'cube' },
-                    { id: 'dim-lights', type: 'action', text: 'Dim Lights', icon: 'adjust' },
-                    { id: 'lock-doors', type: 'action', text: 'Lock All Doors', icon: 'lock' },
-                    { id: 'night-temp', type: 'control', text: 'Set Night Temperature', icon: 'moon' },
+                    { id: 'define-night', type: 'procedure', text: 'Define: Night Mode', icon: 'cube' },
+                    { id: 'dim-lights', type: 'motion', text: 'Dim Lights', icon: 'adjust' },
+                    { id: 'lock-doors', type: 'motion', text: 'Lock All Doors', icon: 'lock' },
+                    { id: 'night-temp', type: 'motion', text: 'Set Night Temperature', icon: 'moon' },
                     
-                    { id: 'define-home', type: 'define', text: 'Define: Smart Home', icon: 'cube' },
-                    { id: 'call-morning', type: 'call', text: 'Run: Morning Mode', icon: 'play' },
-                    { id: 'call-day', type: 'call', text: 'Run: Day Mode', icon: 'play' },
-                    { id: 'call-night', type: 'call', text: 'Run: Night Mode', icon: 'play' },
-                    { id: 'call-home', type: 'call', text: 'Run: Smart Home', icon: 'play' }
+                    { id: 'define-home', type: 'procedure', text: 'Define: Smart Home', icon: 'cube' },
+                    { id: 'call-morning', type: 'procedure', text: 'Run: Morning Mode', icon: 'play' },
+                    { id: 'call-day', type: 'procedure', text: 'Run: Day Mode', icon: 'play' },
+                    { id: 'call-night', type: 'procedure', text: 'Run: Night Mode', icon: 'play' },
+                    { id: 'call-home', type: 'procedure', text: 'Run: Smart Home', icon: 'play' }
                 ],
                 solution: ['define-morning', 'lights-on', 'heat-on', 'play-news', 'define-day', 'lights-off', 'temp-medium', 'security-on', 'define-night', 'dim-lights', 'lock-doors', 'night-temp', 'define-home', 'call-morning', 'call-day', 'call-night', 'call-home'],
                 isNested: true
@@ -1200,40 +1200,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 image: "./images/pixel-art.svg",
                 hint: "Game designers use many procedures! Create procedures for 'Define: Character Design', 'Define: Level Building', 'Define: Game Testing', and finally 'Define: Game Development' that uses all the other procedures in order.",
                 blocks: [
-                    { id: 'define-character', type: 'define', text: 'Define: Character Design', icon: 'cube' },
-                    { id: 'sketch-hero', type: 'action', text: 'Sketch Hero', icon: 'user-astronaut' },
-                    { id: 'design-abilities', type: 'control', text: 'Design Abilities', icon: 'bolt' },
-                    { id: 'create-animation', type: 'action', text: 'Create Animation', icon: 'running' },
+                    { id: 'define-character', type: 'procedure', text: 'Define: Character Design', icon: 'cube' },
+                    { id: 'sketch-hero', type: 'motion', text: 'Sketch Hero', icon: 'user-astronaut' },
+                    { id: 'design-abilities', type: 'motion', text: 'Design Abilities', icon: 'bolt' },
+                    { id: 'create-animation', type: 'motion', text: 'Create Animation', icon: 'running' },
                     
-                    { id: 'define-level', type: 'define', text: 'Define: Level Building', icon: 'cube' },
-                    { id: 'design-map', type: 'action', text: 'Design Map', icon: 'map' },
-                    { id: 'add-obstacles', type: 'action', text: 'Add Obstacles', icon: 'mountains' },
-                    { id: 'place-treasure', type: 'action', text: 'Place Treasure', icon: 'gem' },
-                    { id: 'add-enemies', type: 'action', text: 'Add Enemies', icon: 'ghost' },
+                    { id: 'define-level', type: 'procedure', text: 'Define: Level Building', icon: 'cube' },
+                    { id: 'design-map', type: 'motion', text: 'Design Map', icon: 'map' },
+                    { id: 'add-obstacles', type: 'motion', text: 'Add Obstacles', icon: 'mountains' },
+                    { id: 'place-treasure', type: 'motion', text: 'Place Treasure', icon: 'gem' },
+                    { id: 'add-enemies', type: 'motion', text: 'Add Enemies', icon: 'ghost' },
                     
-                    { id: 'define-testing', type: 'define', text: 'Define: Game Testing', icon: 'cube' },
-                    { id: 'test-controls', type: 'sensor', text: 'Test Controls', icon: 'gamepad' },
-                    { id: 'find-bugs', type: 'sensor', text: 'Find Bugs', icon: 'bug' },
-                    { id: 'fix-issues', type: 'action', text: 'Fix Issues', icon: 'wrench' },
-                    { id: 'play-game', type: 'action', text: 'Play Full Game', icon: 'play-circle' },
+                    { id: 'define-testing', type: 'procedure', text: 'Define: Game Testing', icon: 'cube' },
+                    { id: 'test-controls', type: 'motion', text: 'Test Controls', icon: 'gamepad' },
+                    { id: 'find-bugs', type: 'motion', text: 'Find Bugs', icon: 'bug' },
+                    { id: 'fix-issues', type: 'motion', text: 'Fix Issues', icon: 'wrench' },
+                    { id: 'play-game', type: 'motion', text: 'Play Full Game', icon: 'play-circle' },
                     
-                    { id: 'define-development', type: 'define', text: 'Define: Game Development', icon: 'cube' },
-                    { id: 'call-character', type: 'call', text: 'Run: Character Design', icon: 'play' },
-                    { id: 'call-level', type: 'call', text: 'Run: Level Building', icon: 'play' },
-                    { id: 'call-testing', type: 'call', text: 'Run: Game Testing', icon: 'play' },
-                    { id: 'release-game', type: 'action', text: 'Release Game', icon: 'rocket' },
-                    { id: 'call-development', type: 'call', text: 'Run: Game Development', icon: 'play' }
+                    { id: 'define-development', type: 'procedure', text: 'Define: Game Development', icon: 'cube' },
+                    { id: 'call-character', type: 'procedure', text: 'Run: Character Design', icon: 'play' },
+                    { id: 'call-level', type: 'procedure', text: 'Run: Level Building', icon: 'play' },
+                    { id: 'call-testing', type: 'procedure', text: 'Run: Game Testing', icon: 'play' },
+                    { id: 'release-game', type: 'motion', text: 'Release Game', icon: 'rocket' },
+                    { id: 'call-development', type: 'procedure', text: 'Run: Game Development', icon: 'play' }
                 ],
                 solution: ['define-character', 'sketch-hero', 'design-abilities', 'create-animation', 'define-level', 'design-map', 'add-obstacles', 'place-treasure', 'add-enemies', 'define-testing', 'test-controls', 'find-bugs', 'fix-issues', 'play-game', 'define-development', 'call-character', 'call-level', 'call-testing', 'release-game', 'call-development'],
                 isNested: true
             }
         }
     };
-    
-    // Log challenges data to verify it's loaded
-    console.log('Procedures challenges count:', Object.keys(challenges.procedures).length);
-    console.log('First procedure challenge:', challenges.procedures[1]);
-    
+
     // --- STATE VARIABLES ---
     let currentCategory = 'sequencing';
     let currentLevel = 1;
@@ -1264,9 +1260,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Initializing Code Blocks Adventure...');
         
         try {
-            // Generate level buttons for procedures
-            generateProcedureLevels();
-            
             // Set up challenge selection listeners
             document.querySelectorAll('.challenges-list .list-group-item').forEach(item => {
                 console.log('Setting up click handler for category:', item.dataset.category);
@@ -1276,12 +1269,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     item.classList.add('active');
                     currentCategory = item.dataset.category;
                     currentLevel = 1; // Reset level when changing categories
-                    
-                    // If switching to procedures, ensure levels are generated
-                    if (currentCategory === 'procedures') {
-                        generateProcedureLevels();
-                    }
-                    
                     loadChallenge();
                     updateUI();
                 });
@@ -1340,8 +1327,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- CHALLENGE FUNCTIONS ---
     function loadChallenge() {
-        console.log(`Loading challenge for category: ${currentCategory}, level: ${currentLevel}`);
-        
         // Clear existing blocks
         blockPalette.innerHTML = '';
         blocksContainer.innerHTML = '';
@@ -1353,10 +1338,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         const challenge = getCurrentChallenge();
-        if (!challenge) {
-            console.error(`Failed to load challenge for category: ${currentCategory}, level: ${currentLevel}`);
-            return;
-        }
+        if (!challenge) return;
         
         // Update challenge information
         challengeTitle.textContent = `${capitalizeFirstLetter(currentCategory)} Challenge`;
@@ -1395,7 +1377,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function getCurrentChallenge() {
         if (!challenges[currentCategory] || !challenges[currentCategory][currentLevel]) {
-            console.warn(`Challenge not found for category: ${currentCategory}, level: ${currentLevel}`);
             return null;
         }
         return challenges[currentCategory][currentLevel];
@@ -1832,44 +1813,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 closeModal();
             }
         });
-    }
-    
-    // Function to generate procedure level buttons
-    function generateProcedureLevels() {
-        const procedureLevelsContainer = document.querySelector('.procedures-levels');
-        if (!procedureLevelsContainer) return;
-        
-        // Clear any existing levels
-        procedureLevelsContainer.innerHTML = '';
-        
-        // Count how many procedure levels we have
-        const procedureLevels = Object.keys(challenges.procedures).length;
-        console.log(`Generating ${procedureLevels} procedure level buttons`);
-        
-        // Create a button for each level
-        for (let i = 1; i <= procedureLevels; i++) {
-            const challenge = challenges.procedures[i];
-            if (!challenge) continue;
-            
-            const levelButton = document.createElement('button');
-            levelButton.className = 'list-group-item list-group-item-action';
-            levelButton.dataset.level = i;
-            levelButton.textContent = `Level ${i}: ${challenge.title}`;
-            
-            // Add click event listener
-            levelButton.addEventListener('click', () => {
-                console.log('Procedure level clicked:', i);
-                // Only remove active class from levels in the current category
-                document.querySelectorAll('.procedures-levels .list-group-item').forEach(btn => btn.classList.remove('active'));
-                levelButton.classList.add('active');
-                currentCategory = 'procedures';
-                currentLevel = i;
-                loadChallenge();
-                updateUI();
-            });
-            
-            procedureLevelsContainer.appendChild(levelButton);
-        }
     }
     
     // Function to get level-specific help
